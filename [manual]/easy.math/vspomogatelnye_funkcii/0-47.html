@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+	<title>Easy Math — Coordinates</title>
+</head>
+<body>
+<div class="em_AROUND">
+	<a id="UP" class="emHREFHH" href="http://aleksversus.narod.ru/qsp/projects/easy.math.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.0</h1></a>
+	<div class="em_PAGE">
+		<div><a href="../manual.html">Назад</a></div>
+		<h3>Вспомогательные функции</h3>
+			<a id="getwordinpos"></a><h4>get.word.inPos</h4>
+		<p><a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+		<p>Функция из строки вида <span class="emTEXT">aaa|bbb|ccc|...|yyy|zzz</span> получает подстроку, стоящую в указанной позиции. Подстроки помещаются между разделителями. По умолчанию разделителем является вертикальная черта.</p>
+				<p class="em_CODE">
+						<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - строка
+					<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - позиция, из которой нужно получить подстроку.
+					<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель. По умолчанию в качестве разделителя используется вертикальная черта.
+				</p>
+				<h5>Результат работы функции:</h5>
+		<p>Заготовленная строка:</p>
+				<p class="em_CODE">$text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"</p>
+				<p>Примеры работы функции:
+				<p class="em_CODE">
+						$func('get.word.inPos',$text,2)="Февраль"
+					<br>$func('get.word.inPos',$text,5)="Май"
+					<br>$func('get.word.inPos',$text,8)="Август"
+					<br>$func('get.word.inPos',$text,11)="Ноябрь"
+					<br>$func('get.word.inPos',$text,14)="Декабрь"
+					<br>$func('get.word.inPos',$text,2,"ь")="|Феврал"
+					<br>$func('get.word.inPos',$text,5,"р")="ель|Май|Июнь|Июль|Август|Сентяб"
+					<br>$func('get.word.inPos',$text,8,"е")="кабрь"
+					<br>$func('get.word.inPos',$text,11,"я")="брь|Декабрь"
+					<br>$func('get.word.inPos',$text,14,"а")="брь"
+					<br>$func('get.word.inPos',$text,3,"брь")="рь|Нояб"
+				</p>
+			<a id="gettagnum"></a><h4>get.tag.num</h4>
+				<a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
+				<p>Получает содержимое одиночного тега<a href="#bottom1" id="upping1" class="em_PRIM">[1]</a> из строки.
+		<p>Порядок вызова функции:</p>
+				<p class="em_CODE">
+						<span class="emFUNC">$func</span>(<span class="emTEXT">'get.tag.num'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
+					<br><span class="emFUNC">func</span>(<span class="emTEXT">'get.tag.num'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
+				<p>,
+				где
+				<p class="em_CODE">
+						<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, содержащий тег.
+					<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
+				</p>
+				<p>Результатом может быть текстовое или числовое значение.</p>
+				<p>Примеры одиночных тегов с корнем <span class="emFOLD">tag</span>:</p>
+				<p class="em_CODE">
+					<span class="emFOLD">tag</span><span class="emOPRT">:</span><span class="emTEXT">non_space_symbols</span>
+					<br><span class="emOPRT"><span class="emFOLD">tag</span>=#<span class="emTEXT">non_space_symbols</span></span>
+					<br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>&gt;</span>
+					<br><span class="emOPRT">[<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>]</span>
+					<br><span class="emOPRT">{<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>}</span>
+					<br><span class="emOPRT">(<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>)</span>
+					<br><span class="emOPRT"><span class="emFOLD">tag</span>="<span class="emTEXT">any symbols</span>"</span>
+					<br><span class="emOPRT"><span class="emFOLD">tag</span>='<span class="emTEXT">any symbols</span>'</span>
+				</p>
+				<p>Первые два типа записей не должны содержать пробельных символов, остальные - могут. Тем не менее не рекомендуется использовать данную функцию для извлечения данных с пробельными символами.</p>
+				<h5>Результат работы функции:</h5>
+				<p>Заготовленная строка:</p>
+				<p class="em_CODE">
+					$text=<span class="emTEXT">"[count:текст с пробелом] &lt;cord:68&gt; log:непробельные_символы color=#ff8899 tag='многа букав'"</span>
+				</p>
+				<p>Извлечённые значения:</p>
+				<p class="em_CODE">
+					$func('get.tag.num',$text,'count')="<span class="emTEXT">текст с пробелом</span>"
+					<br>func('get.tag.num',$text,'cord')=<span class="emNUM">68</span>
+					<br>$func('get.tag.num',$text,'log')="<span class="emTEXT">непробельные_символы</span>"
+						<br>$func('get.tag.num',$text,'color')="<span class="emTEXT">ff8899</span>"
+							<br>$func('get.tag.num',$text,'tag')="<span class="emTEXT">многа букав</span>"
+				</p>
+			<a id="gettagcont"></a><h4>get.tag.cont</h4>
+				<a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
+		<p>Получает содержимое двойного тега из строки.</p>
+		<p>Пример вызова функции:</p>
+				<p class="em_CODE">
+					<span class="emFUNC">$func</span>(<span class="emTEXT">'get.tag.cont'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
+				<p>,
+				где
+				<p class="em_CODE">
+						<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, содержащий тег.
+					<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
+				</p>
+				<p>Результатом может быть только текстовое значение.</p>
+				<p>Примеры двойных тегов с корнем <span class="emFOLD">tag</span>:</p>
+				<p class="em_CODE">
+						&nbsp;<span class="emOPRT"><span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span></span>
+					<br><span class="emOPRT">[<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>]</span>
+					<br><span class="emOPRT">(<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>)</span>
+					<br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>&gt;</span>
+					<br><span class="emOPRT">[<span class="emFOLD">tag</span>]<span class="emTEXT">any symbols</span>[/<span class="emFOLD">tag</span>]</span>
+					<br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>&gt;<span class="emTEXT">any symbols</span>&lt;/<span class="emFOLD">tag</span>&gt;</span>
+				</p>
+				<h5>Результат работы функции:</h5>
+				<p>Заготовленная строка:</p>
+				<p class="em_CODE">$text=<span class="emTEXT">"[count:текст с пробелом:count] &lt;cord:странный и непонятный текст:cord&gt; log:п р о б е л ь н ы е  и  непробельные  символы:log &lt;color&gt;ff8899&lt;/color&gt; [tag]многа букав[/tag]"</span></p>
+				<p>Извлечённые значения:</p>
+				<p class="em_CODE">
+					$func('get.tag.cont',$text,'count')="<span class="emTEXT">текст с пробелом</span>"
+					<br>$func('get.tag.cont',$text,'cord')="<span class="emTEXT">странный и непонятный текст</span>"
+					<br>$func('get.tag.cont',$text,'log')="<span class="emTEXT">п р о б е л ь н ы е и непробельные символы</span>"
+					<br>$func('get.tag.cont',$text,'color')="<span class="emTEXT">ff8899</span>"
+					<br>$func('get.tag.cont',$text,'tag')="<span class="emTEXT">многа букав</span>"
+				</p>
+			<a id="killvarolegus"></a><h4>kill.var.olegus</h4>
+				<a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
+				<p>Процедура, идею которой на форуме QSP изложил Olegus. Удаляет элемент массива по текстовому индексу. Работает как с текстовыми, так и с числовыми массивами.</p>
+				<p class="em_CODE">
+						<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя массива.
+					<br><span class="emVAR">$args[<span class="emNUM">1 ... 8</span>]</span> - текстовые индексы. Процедура позволяет удалять одновременно до восьми элементов массива.
+				</p>
+				<h5>Результат работы процедуры:</h5>
+				<p class="em_CODE">
+						$a['text']='56'
+					<br>$a['for']='112'
+					<br>$a['of']='9432'
+					<br>
+					<br>gosub 'kill.var.olegus','$a','for'
+					<br>
+					<br>$a['text']='56'
+					<br>$a['for']=''
+					<br>$a['of']='9432'
+				</p>
+			<hr>
+			<h4>Примечания:</h4>
+			<p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего тегов. Содержимое тегов - это информация, которую они отмечают, или выделяют.</p>
+		<div><a href="../manual.html">Назад</a></div>
+	</div>
+	<div class="em_Epigraph">
+		<div class="em_subText">
+			<p>Aleks Versus'Easy Libraries'2019</p>
+			<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2019</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+	<title>Easy Math — Logic Operations</title>
+</head>
+<body>
+<div class="em_AROUND">
+	<a id="UP" class="emHREFHH" href="http://aleksversus.narod.ru/qsp/projects/easy.math.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.0</h1></a>
+	<!-- Исправить ссылку -->
+	<div class="em_PAGE">
+		<div><a href="../manual.html">Назад</a></div>
+
+				<h3>Операции с целыми числами</h3>
+
+				<a id="even"></a><h4>#even#</h4>
+					<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+					<p>Функция предназначена для округления целых чисел.</p>
+					<p class="em_CODE">
+						<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число
+						<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - разрядность округления: <span class="emNUM">10</span> - десятки, <span class="emNUM">100</span> - сотни, <span class="emNUM">1000</span> - тысячи, и т.д.; если не указано принимается равным <span class="emNUM">100</span>.
+						<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - правило округления числа: <span class="emTEXT">up</span> - в сторону увеличения; <span class="emTEXT">down</span> - в сторону уменьшения; пустое значение - по правилам округления: последнее число перед округляемым разрядом меньше пяти - округляем в меньшую сторону, больше четырёх - в большую.
+					</p>
+					<p>Округление отрицательных чисел поддерживается.</p>
+
+					<h5>Результат работы функции:</h5>
+
+					<p class="em_CODE">
+						func ("#even#",549,10,"up") = 550
+						<br>func ("#even#",549,10,"down") = 540
+						<br>func ("#even#",549,1000) = 1000
+						<br>func ("#even#",-5545,12) = -5500
+						<br>func ("#even#",45599) = 45600
+						<br>func ("#even#",-45599) = -45600
+					</p>
+
+				<a id="sum"></a><h4>#sum#</h4>
+					<a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
+					<p>Функция предназначена для суммирования значений всех элементов массива. Причём суммироваться будут даже элементы, индексируемые через текстовые значения.</p>
+					<p>Используйте только для заведомо малых значений - функция корректно работает с числами, укладывающимися в определённые интервалы.</p>
+					<p class="em_CODE">
+						<span class="emVAR">$args[<span class="emNUM">0</span>]</span> — имя массива (текстовое значение).<br>
+                        <span class="emVAR">$args[<span class="emNUM">1</span>]</span> — разделитель, который будет вставляться между значениями, если склеиваются значения элементов текстового массива. По умолчанию пробел. Склейка без разделителя через передачу <span class="emTEXT">"/se"</span>.
+					</p>
+					<p>Результатом работы функции может быть число или текст, в зависимости от того, сумму числового или текстового массива вы хотите получить. Значения массива при этом не изменяются.</p>
+					<p class="em_CODE">func('#sum#','mass1')</p>
+
+				<a id="raz"></a><h4>#raz#</h4>
+					<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+					<p>получает разрядность целого числа в виде круглого числа.</p>
+					<p class="em_CODE">
+						<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число
+					</p>
+					<p>Отрицательные числа поддерживаются.</p>
+
+					<h5>Результат работы функции:</h5>
+
+					<p class="em_CODE">
+						func('#raz#',36) = 10
+						<br>func('#raz#',360) = 100
+						<br>func('#raz#',366) = 100
+						<br>func('#raz#',9999) = 1000
+						<br>func('#raz#',-45023) = 10000
+					</p>
+
+				<a id="quart"></a><h4>#^#</h4>
+					<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+					<p>функция предназначена для возведения целого числа в степень.</p>
+					<p class="em_CODE">
+						<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - основание, целое число
+						<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - показатель, целое положительное число
+					</p>
+					<p>Следует заметить, что для подсчёта функция использует цикл. Если Вы возводите число, пусть даже единицу, в большую степень, вычисления на слабых компьютерах могут заметно подвешивать игру.</p>
+
+					<h5>Результат работы функции:</h5>
+
+					<p class="em_CODE">
+						func('#^#',6,6) = 46656
+						<br>func('#^#',4,2) = 16
+						<br>func('#^#',4,3) = 64
+						<br>func('#^#',4,4) = 256
+						<br>func('#^#',250,2) = 62500
+					</p>
+
+				<a id="minus"></a><h4>#-#</h4>
+					<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+					<p>Модуль разницы двух целых чисел.</p>
+					<p class="em_CODE">
+						<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - первое число, целое
+						<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - второе число, целое
+					</p>
+					<p>Эта функция несёт не столько какую-то практическую пользу, сколько сокращает запись. Например, есть две переменные, разницу между которыми нам надо вычислить. Вот запись без использования функции:</p>
+					<p class="em_CODE">if a&gt;b: c=a-b else c=b-a</p>
+					<p>Или:</p>
+					<p class="em_CODE">c=a-b<br>if c&lt;0: c=-c</p>
+					<p>Двадцать знаков в первом случае, пятнадцать во втором, не считая пробелов. Теперь функция:</p>
+					<p class="em_CODE">c=func('#-#',a,b)</p>
+					<p>Семнадцать знаков. Выглядит неубедительно, потому как взяты переменные с короткими именами. А что если вместо этих переменных пришлось использовать такие:&nbsp;</p>
+					<p class="em_CODE">if a_easy_math&gt;b_easy_math: c_easy_math=a_easy_math-b_easy_math else c_easy_math=b_easy_math-a_easy_math</p>
+					<p>сто четыре символа. А теперь функция:</p>
+					<p class="em_CODE">c_easy_math=func('#-#',a_easy_math,b_easy_math)</p>
+					<p>сорок семь символов - запись вдвое короче.</p>
+		<div><a href="../manual.html">Назад</a></div>
+	</div>
+
+	<div class="em_Epigraph">
+		<div class="em_subText">
+			<p>Aleks Versus'Easy Libraries'2013</p>
+			<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

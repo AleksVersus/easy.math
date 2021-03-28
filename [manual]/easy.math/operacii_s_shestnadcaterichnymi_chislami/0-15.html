@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+	<title>Easy Math — Logic Operations</title>
+</head>
+<body>
+<div class="em_AROUND">
+	<a id="UP" class="emHREFHH" href="http://aleksversus.narod.ru/qsp/projects/easy.math.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.0</h1></a>
+	<!-- Исправить ссылку -->
+	<div class="em_PAGE">
+		<div><a href="../manual.html">Назад</a></div>
+		<h3>Операции над шестнадцатеричными числами</h3>
+			<a id="hexdec"></a><h4>#hex-dec#</h4>
+				<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+				<p>Функция перевода из гексаметричного числа в декаметричное. Не работает с отрицательными значениями.</p>
+				<p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет те же ограничения на значение результата, что и прочие фукции, т.е. результат должен лежать в пределе [-2147483648 ... 2147483647] (для Q.S.P. 5.7.0).</p>
+				<p class="em_CODE">
+					<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - шестнадцатеричное число (текстовое значение). Значения в пределе <span class="emTEXT">7fffffff</span>
+					<br><span class="emVAR">&nbsp;&nbsp;result</span> - полученное число
+				</p>
+				<h5>Результат работы функции:</h5>
+				<p class="em_CODE">
+					func('#hex-dec#','ff')  =   255<br>
+					func('#hex-dec#','22')  =   34<br>
+					func('#hex-dec#','10')  =   16<br>
+					func('#hex-dec#','1')   =   1<br>
+					func('#hex-dec#','a')   =   10<br>
+					func('#hex-dec#','ffaa233') =   268083763<br>
+					func('#hex-dec#','ffaa23')  =   16755235<br>
+					func('#hex-dec#','ffaa2')   =   1047202<br>
+					func('#hex-dec#','ffaa233451')  =   <span class="em_RED">-1440533423</span><br>
+					func('#hex-dec#','ffaa23345')   =   <span class="em_RED">-90033339</span><br>
+					func('#hex-dec#','ffaa2334')    =   <span class="em_RED">-5627084</span><br>
+				</p>
+				<p>Как видно, последние три результата получились отрицательными, значит превышены пределы значений резултата, а соответственно и числа, которые переводятся в десятеричную систему тоже превышают предел.
+			<a id="dechex"></a><h4>#dec-hex#</h4>
+				<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+				<p>Функция перевода из декаметричного числа в гексаметричное. Не работает с отрицательными значениями.</p>
+				<p>Использует циклический алгоритм перевода, в связи с чем может заметно подвешивать игру при переводе больших чисел. Имеет ограничения на значения аргумента в пределе [-2147483648 ... 2147483647] (для Q.S.P. 5.7.0).</p>
+				<p class="em_CODE">
+					<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - целое число (числовой вид). Значения в пределе 2147483647
+					<br><span class="emVAR">&nbsp;$result</span> - полученная строка
+				</p>
+				<h5>Результат работы функции:</h5>
+				<p class="em_CODE">
+					$func('#dec-hex#',2147483647)   =   7fffffff<br>
+					$func('#dec-hex#',214)  =   d6<br>
+					$func('#dec-hex#',255)  =   ff<br>
+					$func('#dec-hex#',10)   =   a<br>
+					$func('#dec-hex#',9)    =   9<br>
+					$func('#dec-hex#',2147483648)   =   <span style="color:red;">-0</span>
+				</p>
+				<p>Как видно, последний результат получился отрицательным, потому что был превышен предел на значения аргумента.</p>
+			<a id="deccol"></a><h4>#dec-col#</h4>
+				<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+				<p>Преобразует десятеричное число в шестнадцатеричное. Отличием от функции #dec-hex# является ограничение на значение аргумента в пределах [-16777215 ... 16777215]. Если пределы превышены, функция выдаёт в результат 00. Любое число в пределах преобразуется к двуразрядному шестнадцатеричному числу. Таким образом ограничение на результат лежит в пределах [-ff ... ff].</p>
+				<p>В общем и целом, такое преобразование необходимо для того, чтобы силами QSP конвертировать значения цветовой составляющей от HTML формата (где запись идёт в шестнадцатеричном коде) в RGB формат (где запись идёт в десятеричном коде). Используется в библиотеке easy.titles.qsp для ковертирования цветовых значений.</p>
+				<p class="em_CODE">
+					<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - число целое, десятеричное.
+					<br><span class="emVAR">&nbsp;$result</span> - шестнадцатеричное двуразрядное число (текстовое значение).
+				</p>
+				<h5>Результат работы функции:</h5>
+				<p class="em_CODE">
+					$func('#dec-col#',2147483647)  =   <span style="color:red;">00</span><br>
+					$func('#dec-col#',214)  =   d6<br>
+					$func('#dec-col#',255)  =   ff<br>
+					$func('#dec-col#',-10)  =   <span style="color:green;">-0a</span><br>
+					$func('#dec-col#',256)  =   10<br>
+					$func('#dec-col#',16)   =   10
+				</p>
+				<p>Данная функция работает с отрицательными значениями, поэтому результат, отмеченный зелёным, верен. Результат, отмеченный красным, - не верен.</p>
+			<a id="col"></a><h4>#+col#</h4>
+				<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+				<p>Функция предназначена для изменения цвета для HTML.</p>
+				<p><span  class="emCOMM">! функция использует функции <span class="emFOLD">#hex-dec#</span> и <span class="emFOLD">#dec-col#</span>.</span></p>
+				<p class="em_CODE">
+					<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+					<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - значение. Шестнадцатеричный формат, двузначное число. (может быть отрицательным)
+				</p>
+				<p>Функция действует следующим образом: разбивает первый аргумент на три двузначных шестнадцатеричных числа, и к каждому из чисел прибавляет второй аргумент. Если сумма превышает значение ff, она приводится к ff. И напротив, если сумма оказывается меньше <span class="emNUM">0</span>, она приводится к <span class="emNUM">0</span>. Таким образом результат работы функции лежит в пределах [000000 ... ffffff]</p>
+				<p>Это может пригодиться для плавного гашения цвета, или наоборот. Функция используется в движке игры <span class="emTEXT">"МАГИКОН"</span>, чтобы гасить цвета заголовков в зависимости от уровней.</p>
+				<h5>Результат работы функции:</h5>
+				<p class="em_CODE">
+					$func('#+col#','ff0000','-44')&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;bb0000<br>
+					$func('#+col#','000000','-44')&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;000000<br>
+					$func('#+col#','dd0000','22')&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;ff2222<br>
+					$func('#+col#','dd8822','-44')&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;994400<br>
+					$func('#+col#','dd8822','44')&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;ffcc66
+				</p>
+			<a id="colrgb"></a><h4>#col-rgb#</h4>
+				<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+				<p>Данная функция преобразует цвет, записанный в шестнадцатеричной форме, в числовой код цвета, понятный QSP.</p>
+				<p><span  class="emCOMM">! функция использует функцию <span class="emFOLD">#hex-dec#</span>.</span></p>
+				<p class="em_CODE">
+					<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+				</p>
+				<p>Функция является как бы надстройкой системной функции <span class="emFUNC">rgb</span> и работает следующим образом: шестнадцатеричный код цвета разбивается на три двузначных шестнадцатеричных числа, которые преобразуются в десятеричные числа и передаются функции <span class="emFUNC">rgb</span> в качестве аргументов.</p>
+				<p>Если в качестве аргумента указать неверное шестнадцатеричное число, функция всё равно вернёт результат, заменив неверные символы нулями. То же самое произойдёт, если указать отрицательное шестнадцатеричное число. Минус будет считаться неизвестным символом и <span class="emFOLD">#hex-dec#</span> заменит его на ноль. Последняя цифра будет отсечена.</p>
+				<h5>Результат работы функции:</h5>
+				<p class="em_CODE">
+					$func('#col-rgb#','ff0000') = -16776961<br/>
+					$func('#col-rgb#','000000') = -16777216<br/>
+					$func('#col-rgb#','dd0000') = -16776995<br/>
+					$func('#col-rgb#','dd8822') = -14513955<br/>
+					$func('#col-rgb#','<span class="em_RED">ffmm00</span>') = -16776961<br/>
+					$func('#col-rgb#','<span class="em_RED">-0000ff</span>') = -15794176
+				</p>
+			<a id="colinv"></a><h4>#col-inv#</h4>
+				<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+				<p>Возвращает шестнадцатеричный код цвета противоположного указанному..</p>
+				<p><span  class="emCOMM">! функция использует функцию <span class="emFOLD">#+col#</span>.</span></p>
+				<p class="em_CODE">
+					<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - цвет. Шестнадцатеричный формат, шестизначное число. (не может быть отрицательным)
+				</p>
+				<p>Принцип работы прост. Берётся максимальное значение для цветовой составляющей, и из него вычитается соответствующее значение цветовой составляющей исходного цвета. Полученные результаты склеиваются, в результате — цвет противоположный исходному.</p>
+				<p></p>
+				<h5>Результат работы функции:</h5>
+				<div class="em_CODE">
+					<p>В качестве результата работы функции наглядная таблица исходных цветов и противоложных им.</p>
+					<table class="em_plusBRD">
+						<tr>
+							<td>
+								Исходный
+							</td>
+							<td>
+								Противоположный
+							</td>
+						</tr>
+						<tr>
+							<td style="color:#ffffff;background-color:#000000;width:50%;">
+								#000000
+							</td>
+							<td style="color:#000000;background-color:#ffffff;width:50%;">
+								#ffffff
+							</td>
+						</tr>
+						<tr>
+							<td style="color:#000000;background-color:#ffffff;width:50%;">
+								#ffffff
+							</td>
+							<td style="color:#ffffff;background-color:#000000;width:50%;">
+								#000000
+							</td>
+
+						</tr>
+						<tr>
+							<td style="color:#000;background-color:#238C90;width:50%;">
+								#238c90
+							</td>
+							<td style="color:#000;background-color:#dc736f;width:50%;">
+								#dc736f
+							</td>
+						</tr>
+						<tr>
+							<td style="color:#000;background-color:#902B10;width:50%;">
+								#902b10
+							</td>
+							<td style="color:#000;background-color:#6fd4ef;width:50%;">
+								#6fd4ef
+							</td>
+						</tr>
+						<tr>
+							<td style="color:#000;background-color:#C7C000;width:50%;">
+								#c7c000
+							</td>
+							<td style="color:#000;background-color:#383fff;width:50%;">
+								#383fff
+							</td>
+						</tr>
+						<tr>
+							<td style="color:#000;background-color:#07C701;width:50%;">
+								#07c701
+							</td>
+							<td style="color:#000;background-color:#f838fe;width:50%;">
+								#f838fe
+							</td>
+						</tr>
+					</table>
+				</div>
+		<p></p>
+		<div><a href="../manual.html">Назад</a></div>
+	</div>
+
+	<div class="em_Epigraph">
+		<div class="em_subText">
+			<p>Aleks Versus'Easy Libraries'2013</p>
+			<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

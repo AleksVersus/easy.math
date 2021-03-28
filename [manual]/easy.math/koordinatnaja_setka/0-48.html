@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+	<title>Easy Math — Coordinates</title>
+</head>
+<body>
+	<div class="em_AROUND">
+		<a id="UP" class="emHREFHH" href="http://aleksversus.narod.ru/qsp/projects/easy.math.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.0</h1></a>
+		<div class="em_PAGE">
+			<div><a href="../manual.html">Назад</a></div>
+			<h3>Работа с координатной сеткой</h3>
+			<a id="coordsget"></a>
+			<h4>#coords.get#</h4>
+
+			<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+			<p>Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
+			<p class="em_CODE">
+				<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - текущий номер ячейки или блока <span class="emTT">N</span>;
+				<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - ширина поля <span class="emTT">W</span>;
+				<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - управление: <span class="emTEXT">"x"</span> - координата по оси X;
+				<span class="emTEXT">"y"</span> - координата по оси Y; пустое значение - обе координаты возвращаются в формате <span class="emTEXT">x:00 y:99</span>.
+			</p>
+			<h5>Пример таблицы:</h5>
+			<p class="em_CODE">
+			y/x&nbsp;&nbsp;|&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+			<br>---&nbsp;-|----------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N = x + y * W
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;0|&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N - номер ячейки
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x - координата по горизонтали
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;1|&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y - координата по вертикали
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W - ширина прямоугольника =Xmax+1
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;2|&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;<span class="emFOLD">10</span>&nbsp;&nbsp;11
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y = N/W
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;3|&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = N - Y * W
+			</p>
+			<h5>Результат работы функции:</h5>
+			<p class="em_CODE">
+				func('#coords.get#',10,3+1,'x')=2
+				<br>func('#coords.get#',10,3+1,'y')=2
+				<br>$func('#coords.get#',10,3+1)="x2: y:2"
+			</p>
+			<div><a href="../manual.html">Назад</a></div>
+		</div>
+		<div class="em_Epigraph">
+			<div class="em_subText">
+				<p>Aleks Versus'Easy Libraries'2013</p>
+				<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

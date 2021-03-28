@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+	<title>Easy Math — Logic Operations</title>
+</head>
+<body>
+<div class="em_AROUND">
+	<a id="UP" class="emHREFHH" href="http://aleksversus.narod.ru/qsp/projects/easy.math.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.0</h1></a>
+	<!-- Исправить ссылку -->
+	<div class="em_PAGE">
+		<div><a href="../manual.html">Назад</a></div>
+				<h3>Операции с текстом</h3>
+					<a id="zero"></a><h4>#zero#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Функция предназначена для генерации строки из повторяющихся групп символов.</p>
+						<p class="em_CODE">
+							<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - количество генерируемых групп (только число)
+							<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - какие символы должны присутствовать в строке. По умолчанию <span class="emTEXT">'0'</span>. Только текстовое значение.
+						</p>
+						<p>Если написать в <span class="emVAR">$args[<span class="emNUM">1</span>]</span> не один символ а группу, будет сгенерирована строка из <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> повторяющихся групп символов.</p>
+						<p>Количество повторений символов, как видно, ограничено ограничениями Вашего плеера на использование значений переменных (для QSP 5.7.0 в пределе [-2147483648 ... 2147483647]).</p>
+						<h5>Результат работы функции:</h5>
+						<p class="em_CODE">
+							$func('#zero#',13)      =   0000000000000<br>
+							$func('#zero#',13,'1')  =   1111111111111<br>
+							$func('#zero#',13,'10') =   10101010101010101010101010<br>
+							$func('#zero#',13,'a')  =   aaaaaaaaaaaaa<br>
+							$func('#zero#',3,'bla') =   blablabla
+						</p>
+					<a id="rndstr"></a><h4>#rndstr#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Функция получает строку случайных символов</p>
+						<p class="em_CODE">
+							<span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - необходимая длина строки. Если не задана, выбирается случайным образом от 1 до 8 символов. Только число
+							<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - символы, которых не должно быть в строке. Только текст.
+							<br>Если <span class="emVAR">$args[<span class="emNUM">1</span>]</span><span class="emTT"> = </span><span class="emTEXT">'буквы и цифры'</span> - строка только из букв и цифр.
+							<br>Если <span class="emVAR">$args[<span class="emNUM">1</span>]</span><span class="emTT"> = </span><span class="emTEXT">'только это'</span> - для формирования строки используются только символы из <span class="emVAR">$args[<span class="emNUM">2</span>]</span>.
+							<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - символы, стоящие здесь, напротив включаются в строку (например, можно добавить пробел к стандартному набору символов, или символ табуляции). Только текст.
+						</p>
+						<p>Подробнее о том, какие символы будут в сгенерированной строке, смотрите код функции с 4 по 10 строчки.</p>
+						<h5>Результат работы функции:</h5>
+						<p class="em_CODE">
+							$func('#rndstr#')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;вЗНзГШмf</span><br>
+							$func('#rndstr#',16,'буквы и цифры')&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;у1ЭAXВ6чГVЫДJМxD</span><br>
+							$func('#rndstr#',16)&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;"i!TОж5wПЬрYхв#а</span><br>
+							$func('#rndstr#',16,'буквы и цифры','$ @ !')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;cл4фYЛ7@EnoiЪm&nbsp;А</span><br>
+							$func('#rndstr#',16,'24680','&nbsp;&nbsp;©')&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;f!с/ Xsэu'\ZlcХ"</span><br>
+							$func('#rndstr#')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;c}fjрIЩB</span><br>
+							$func('#rndstr#',16,'буквы и цифры')&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;БxПxуИЧаgрsмщю9д</span><br>
+							$func('#rndstr#',16)&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;,5яN}BВPсИ&gt;kJlw[</span><br>
+							$func('#rndstr#',16,'буквы и цифры','$ @ !')&nbsp;&nbsp;&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;&nbsp;@rtwЪnЦFЩиВлМяf</span><br>
+							$func('#rndstr#',16,'2 4 6 8 0','&nbsp;&nbsp;©')&nbsp;&nbsp;=<span class="emTEXT">&nbsp;&nbsp;&nbsp;Q©)ь©gЪ*Вл&lt;С@ррх</span>
+						</p>
+					<a id="chkobjword"></a><h4>#chk.obj.word#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Функция вычисляет позицию предмета, содержащего указанное слово или строку, в "инвентаре".</p>
+						<p class="em_CODE">
+							<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - слово
+						</p>
+						<p>Поиск осуществляется только по конкретному значению. Результатом является число.</p>
+						<p>Раньше мне приходилось часто совершать поиск по конкретному значению в инвентаре. Сейчас такая необходимость отпала. Но функция осталась, поскольку некоторые игры до сих пор используют её. Вполне возможно, что и Вам она пригодится.</p>
+					<a id="chkarrayword"></a><h4>#chk.array.word#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Находит позицию элемента в массиве, содержащего регулярное выражение, либо возвращает -1</p>
+						<p class="em_CODE">
+							<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя массива
+							<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - регулярное выражение
+							<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - <span class="emTEXT">first</span> или <span class="emTEXT">last</span> - первая или последняя позиция
+						</p>
+						<p>Все передаваемые функции аргументы должны быть текстовыми. Результатом является число.</p>
+						<p>Фактически эта функция заменила предыдущую, поскольку я отказался от одноуровневого инвентаря. Следует отметить значения <span class="emTEXT">"first"</span> и <span class="emTEXT">"last"</span> для второго аргумента. Если выставлено значение <span class="emTEXT">first</span>, или пустое, функция начнёт поиск с нулевого элемента массива. Если выставлено <span class="emTEXT">'last'</span>, функция начнёт поиск с последнего элемента массива.</p>
+						<p>Функция использует arrcomp, однако, в отличие от arrcomp, находит элемент, который <span style="text-decoration:underline;">содержит</span> строку, соответствующую регулярному выражению, а не тот элемент, который полностью соответствует регулярному выражению.</p>
+						<p>При больших размерах массива (более 1000 элементов на core-i5/x64/2,5 ГГц/8 Гб RAM), функция может заметно подвешивать плеер.</p>
+					<a id="strinarray"></a><h4>#str.inArray#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Из переданного блока текста выбираются строки, находящиеся между разделителями, в том числе строка до первого разделителя и после последнего. В качестве разделителя можно задать что угодно: символ, слово, строку. Для того, чтобы задать несколько разделителей, или неявный разделитель (шаблон разделителя. Например, html-тег), можно использовать регулярные выражения.</p>
+						<div class="em_CODE">
+							<p>
+								<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - отрывок текста, который нужно разбить на строки
+								<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - имя массива, в который нужно поместить полученные строки
+								<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель, по которому нужно произвести выборку строк.
+								<br><span class="emVAR">$args[<span class="emNUM">3</span>]</span> - дополнительные опции (можно комбинировать, записав через пробел):
+							</p>
+							<ul>
+								<li><span class="emTEXT">TRIM</span> - если строка до первого разделителя и/или строка после последнего разделителя окажутся пустыми, они не будут добавлены в массив,</li>
+								<li><span class="emTEXT">NOTSPACE</span> - будут проигнорированы все пустые строки между разделителями,</li>
+								<li><span class="emTEXT">LEFT</span> - сохранить в результирующей строке (строке, помещённой в массив) разделитель, поместив его слева (в начале строки),</li>
+								<li><span class="emTEXT">RIGHT</span> - сохранить в результирующей строке (строке, помещённой в массив) разделитель, поместив его справа (в конце строки),</li>
+								<li><span class="emTEXT">REGULAR</span> - указанный в <span class="emVAR">$args[<span class="emNUM">2</span>]</span> разделитель считается регулярным выражением. При использовании этой опции, опции <span class="emTEXT">LEFT</span> и <span class="emTEXT">RIGHT</span> не работают.</li>
+								<li><span class="emTEXT">UCASE</span> - все результирующие строки будут приведены к верхнему регистру. Имеет приоритет перед <span class="emTEXT">LCASE</span>. Не влияет на разделители.</li>
+								<li><span class="emTEXT">LCASE</span> - все результирующие строки будут приведены к нижнему регистру. Не влияет на разделители.</li>
+							</ul>
+						</div>
+						<h5>Примеры использования:</h5>
+						<p>Посмотрим на выборку строк по разным разделителям на примере одного текста. Текст помещаем в переменную для удобства записи:</p>
+						<p class="em_CODE">
+							$text="<span class="emTEXT">Адское Пекло и Небеса -<br>
+							Я весь мир мечтаю продать.<br>
+							Время - деньги. Пусть стрелки бегут на часах -<br>
+							И мне нечего больше желать.</span>"
+						</p>
+						<p>Разбиваем на строки по символу переноса строки:</p>
+						<p class="em_CODE"><span class="emOPRT">gosub</span> '#str.inArray#',$text,'$mass','<br>',''</p>
+						<p>Результат:</p>
+						<p class="em_CODE">
+							$mass[0]=<span class="emTEXT">Адское Пекло и Небеса -</span><br>
+							$mass[1]=<span class="emTEXT">Я весь мир мечтаю продать.</span><br>
+							$mass[2]=<span class="emTEXT">Время - деньги. Пусть стрелки бегут на часах -</span><br>
+							$mass[3]=<span class="emTEXT">И мне нечего больше желать.</span>
+						</p>
+						<p>Разбиваем на строки по пробелу:</p>
+						<p class="em_CODE">
+							<span class="emOPRT">gosub</span> '#str.inArray#',$text,'$mass','&nbsp;',''
+						</p>
+						<p>Результат (Заметьте, что символ переноса строки в этом случае попадает в результирующие строки. Туда же попадают знаки препинания и прочее):</p>
+						<p class="em_CODE">
+							$mass[0]=<span class="emTEXT">Адское</span>
+							<br>$mass[1]=<span class="emTEXT">Пекло</span>
+							<br>$mass[2]=<span class="emTEXT">и</span>
+							<br>$mass[3]=<span class="emTEXT">Небеса</span>
+							<br>$mass[4]=<span class="emTEXT">-
+							<br>Я</span>
+							<br>$mass[5]=<span class="emTEXT">весь</span>
+							<br>$mass[6]=<span class="emTEXT">мир</span>
+							<br>$mass[7]=<span class="emTEXT">мечтаю</span>
+							<br>$mass[8]=<span class="emTEXT">продать.
+							<br>Время</span>
+							<br>$mass[9]=<span class="emTEXT">-</span>
+							<br>$mass[10]=<span class="emTEXT">деньги.</span>
+							<br>$mass[11]=<span class="emTEXT">Пусть</span>
+							<br>$mass[12]=<span class="emTEXT">стрелки</span>
+							<br>$mass[13]=<span class="emTEXT">бегут</span>
+							<br>$mass[14]=<span class="emTEXT">на</span>
+							<br>$mass[15]=<span class="emTEXT">часах</span>
+							<br>$mass[16]=<span class="emTEXT">-
+							<br>И</span>
+							<br>$mass[17]=<span class="emTEXT">мне</span>
+							<br>$mass[18]=<span class="emTEXT">нечего</span>
+							<br>$mass[19]=<span class="emTEXT">больше</span>
+							<br>$mass[20]=<span class="emTEXT">желать.</span>
+						</p>
+						<p>А вот пример выборки по нескольким разделителям с игнорированием пустых строк. Из текста будут выбраны исключительно слова:</p>
+						<p class="em_CODE">
+							<span class="emOPRT">gosub</span> <span class="emTEXT">'#str.inArray#'</span>,$text,<span class="emTEXT">'$mass'</span>,<span class="emTEXT">'("|!|\?|-|,|;|:|\.|&nbsp;|<br>)'</span>,<span class="emTEXT">'NOTSPACE REGULAR LCASE'</span>
+						</p>
+						<p>Результат:</p>
+						<p class="em_CODE">
+							$mass[0]=<span class="emTEXT">адское</span>
+							<br>$mass[1]=<span class="emTEXT">пекло</span>
+							<br>$mass[2]=<span class="emTEXT">и</span>
+							<br>$mass[3]=<span class="emTEXT">небеса</span>
+							<br>$mass[4]=<span class="emTEXT">я</span>
+							<br>$mass[5]=<span class="emTEXT">весь</span>
+							<br>$mass[6]=<span class="emTEXT">мир</span>
+							<br>$mass[7]=<span class="emTEXT">мечтаю</span>
+							<br>$mass[8]=<span class="emTEXT">продать</span>
+							<br>$mass[9]=<span class="emTEXT">время</span>
+							<br>$mass[10]=<span class="emTEXT">деньги</span>
+							<br>$mass[11]=<span class="emTEXT">пусть</span>
+							<br>$mass[12]=<span class="emTEXT">стрелки</span>
+							<br>$mass[13]=<span class="emTEXT">бегут</span>
+							<br>$mass[14]=<span class="emTEXT">на</span>
+							<br>$mass[15]=<span class="emTEXT">часах</span>
+							<br>$mass[16]=<span class="emTEXT">и</span>
+							<br>$mass[17]=<span class="emTEXT">мне</span>
+							<br>$mass[18]=<span class="emTEXT">нечего</span>
+							<br>$mass[19]=<span class="emTEXT">больше</span>
+							<br>$mass[20]=<span class="emTEXT">желать</span>
+						</p>
+						<p>На момент публикации этой функции в библиотеке была исправлена конструкция функции, не позволявшая использовать в качестве разделителя апостроф. Однако пришлось ввести временную переменную <span class="emFOLD">$easy_math_copy_array</span>. Избегайте использования этой переменной в своих играх одновременно с использованием библиотеки.</p>
+					<a id="widetrim"></a><h4>#widetrim#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Функция похожа на функцию <span class="emFUNC">TRIM</span>. Она удаляет прилегающие символы пробелов, табуляций и переводов строк. Так же функция позволяет убирать все символы преформатирования из текста.</p>
+						<p class="em_CODE">
+							<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - обрабатываемый текст
+							<br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющее слово: <span class="emTEXT">[trim]</span>.
+						</p>
+						<h5>Пример работы:</h5>
+						<p>Для удобства помещаем текст в переменную:</p>
+						<p class="em_CODE">
+							$text=<span class="emTEXT">"&nbsp;&nbsp;&nbsp;&nbsp;
+							<br>&nbsp;&nbsp;&nbsp;
+							<br>&nbsp;&nbsp;&nbsp;первая строка 1&nbsp;&nbsp;&nbsp;&nbsp;
+							<br>&#9;&#9;вторая строка 2&#9;&#9;
+							<br>&nbsp;&nbsp;&nbsp;
+							<br>&nbsp;&nbsp;третья строка
+							<br>&nbsp;&nbsp;&nbsp;
+							<br>&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;"</span>
+						</p>
+						<p>Результат расширенного отсечения:</p>
+   						<p class="em_CODE">
+							$func('#widetrim#',$text)=<span class="emTEXT">"&nbsp;&nbsp;&nbsp;первая строка 1&nbsp;&nbsp;&nbsp;&nbsp;
+							<br>&#9;&#9;вторая строка 2&#9;&#9;
+							<br>&nbsp;&nbsp;&nbsp;
+							<br>&nbsp;&nbsp;третья строка&nbsp;&nbsp;&nbsp;"</span>
+						</p>
+						<p>Результат отсечения символов преформатирования:</p>
+  						<p class="em_CODE">
+							$func('#widetrim#',$text,'[trim]')=<span class="emTEXT">"первая строка 1
+							<br>вторая строка 2
+							<br>
+							<br>третья строка"</span>
+						</p>
+						<p>В последнем случае остекаются не только пробелы и символы табуляции перед строками, но и в конце.</p>
+					<a id="strthin"></a><h4>#str.thin#</h4>
+						<p><a href="#UP" title="Вверх">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a></p>
+						<p>Предназначение этой функции разрежать строку: через определённое количество символов в строку вставляются разделители.</p>
+						<p class="em_CODE">
+							<span class="emVAR">$args[<span class="emNUM">0</span>]</span> - строка, текст;
+							<br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - через какое количество символов вставлять разделитель. По умолчанию разделитель вставляется через каждый один символ;
+							<br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель. По умолчанию символ пробела;
+							<br><span class="emVAR">$args[<span class="emNUM">3</span>]</span> - управление;
+                                <span class="emTEXT">[up]</span> - разрежение "снизу вверх", т.е. разделительные символы начинают вставляться в строку от последнего;
+                                <span class="emTEXT">[right]</span> - добавляет разделитель в конце разрежаемой строки;
+                                <span class="emTEXT">[left]</span> - добавляет разделитель перед разрежаемой строкой.
+						</p>
+						<h5>Примеры:</h5>
+						<p class="em_CODE">
+							$func('#str.thin#','профессура')=<span class="emTEXT">"п р о ф е с с у р а"</span>
+							<br>$func('#str.thin#','профессура',1,'|')=<span class="emTEXT">"п|р|о|ф|е|с|с|у|р|а"</span>
+							<br>$func('#str.thin#','профессура',3,'|')=<span class="emTEXT">"про|фес|сур|а"</span>
+							<br>$func('#str.thin#','профессура',3,'|','[left]')=<span class="emTEXT">"|про|фес|сур|а"</span>
+							<br>$func('#str.thin#','профессура',2,'|','[right]')=<span class="emTEXT">"пр|оф|ес|су|ра|"</span>
+							<br>$func('#str.thin#','профессура',1,'||','[left] [right]')=<span class="emTEXT">"||п||р||о||ф||е||с||с||у||р||а||"</span>
+						</p>
+		<div><a href="../manual.html">Назад</a></div>
+	</div>
+
+	<div class="em_Epigraph">
+		<div class="em_subText">
+			<p>Aleks Versus'Easy Libraries'2013</p>
+			<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
