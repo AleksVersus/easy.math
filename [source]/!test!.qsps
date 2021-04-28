@@ -1,7 +1,7 @@
 # !--test--!
 if $user_text='logs':
 	$func('#array.prnt#','$log','[only result]')
-elseif instr(lcase($user_text),'sqrt')=1:
+elseif instr($lcase($user_text),'sqrt')=1:
 	$args[0]=$trim($replace($replace($replace($user_text,'sqrt'),'('),')'))
 	if isnum($args[0])=0: $args[0]=$dyneval("$result=$str(<<$args[0]>>)")
 	$func('#sqrt#',$args[0])
