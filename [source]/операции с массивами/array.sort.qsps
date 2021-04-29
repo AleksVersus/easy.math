@@ -1,13 +1,15 @@
 # #array.sort#
-$args[0] = $args[0]
-$args[1] = $args[1]
-$args[2] = $replace($args[2],'$')
-if $args[3]='': $args[3] = $args[0]
+$args[0]=$args[0]
+$args[1]=$args[1]
+$args[2]=$replace($args[2],'$')
+if $args[3]='': $args[3]=$args[0]
 $args[9]=$args[9]
-killvar 'easy_math_sort_array'
-killvar 'easy_math_copy_array'
+killvar 'easy_math_sort_array' & !@ массив, в котором хранится порядок перетасованных элементов.
+killvar 'easy_math_copy_array' & !@ массив, в который копируется сортируемый массив для получения значений
+killvar 'easy_math_result_array' & !@ массив, в который будет помещаться результат сортировки
 if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''
 copyarr $args['$']+'easy_math_copy_array',$args[0]
+copyarr $args['$']+'easy_math_result_array',$args[0]
 if $args[2]!'':
 	args['i']=0
 	:for
@@ -17,30 +19,31 @@ if $args[2]!'':
 		jump 'for'
 	end
 end
-args['i'] = 0
+args['i']=-1
 :prohody
-if args['i']<arrsize($args['$']+'easy_math_copy_array'):
-	args['j']=args['i']+1
-	:sorting
-	if args['j']<arrsize($args['$']+'easy_math_copy_array'):
-		dynamic "if (<<$args['$']>>easy_math_copy_array[args[0]] < <<$args['$']>>easy_math_copy_array[args[1]] and ($args[2]='' or $args[2]='up')) or (<<$args['$']>>easy_math_copy_array[args[0]] > <<$args['$']>>easy_math_copy_array[args[1]] and $args[2]='down'):
-			<<$args['$']>>args['tmp'] = <<$args['$']>>easy_math_copy_array[args[0]]
-			<<$args['$']>>easy_math_copy_array[args[0]] = <<$args['$']>>easy_math_copy_array[args[1]]
-			<<$args['$']>>easy_math_copy_array[args[1]] = <<$args['$']>>args['tmp']
-			if $args[3]!'':
-				args['temp'] = easy_math_sort_array[args[0]]
-				easy_math_sort_array[args[0]] = easy_math_sort_array[args[1]]
-				easy_math_sort_array[args[1]] = args['temp']
-			end
-		end",args['i'],args['j'],$args[1],$args[2]
-		args['j']+=1
-		jump 'sorting'
-	end
+if arrsize($args['$']+'easy_math_copy_array')>0:
+	dynamic "
+		if $args[0]='up' or $args[0]='':
+			<<$args['$']>>args['find']=<<$args['$']>>max('<<$args['$']>>easy_math_copy_array')
+		elseif $args[0]='down':
+			<<$args['$']>>args['find']=<<$args['$']>>min('<<$args['$']>>easy_math_copy_array')
+		end
+		args['killpos']=arrpos('<<$args['$']>>easy_math_copy_array',<<$args['$']>>args['find'])
+		killvar '<<$args['$']>>easy_math_copy_array',args['killpos']
+		args['realpos']=arrpos(args[1]+1,'<<$args['$']>>easy_math_result_array',<<$args['$']>>args['find'])
+		<<$args['$']>>args['temp']=<<$args['$']>>easy_math_result_array[args['realpos']]
+		<<$args['$']>>easy_math_result_array[args['realpos']]=<<$args['$']>>easy_math_result_array[args[1]+1]
+		<<$args['$']>>easy_math_result_array[args[1]+1]=<<$args['$']>>args['temp']
+		args['temp']=easy_math_sort_array[args['realpos']]
+		easy_math_sort_array[args['realpos']]=easy_math_sort_array[args[1]+1]
+		easy_math_sort_array[args[1]+1]=args['temp']
+
+	",$args[1],args['i']
 	args['i']+=1
 	jump 'prohody'
 end
 if $args[2]!'': copyarr $args[2],'easy_math_sort_array'
-copyarr $args[3],$args['$']+'easy_math_copy_array'
+copyarr $args[3],$args['$']+'easy_math_result_array'
 killvar 'easy_math_sort_array'
 killvar $args['$']+'easy_math_copy_array'
 --- #array.sort# ---------------------------------

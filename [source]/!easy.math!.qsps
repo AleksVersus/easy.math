@@ -29,12 +29,21 @@ elseif $args[0]='version':
 	result=2300
 end
 :for_rand
-if i<1000:
+if i<10:
 	number[i]=rand(0,99999)
 	i+=1
 	jump 'for_rand'
 end
 old=msecscount
-gosub '#array.sort#','number'
+gosub '#array.sort#','number',"up","sorted"
 msecscount-old
+gosub '#array.rstd#','number','sorted','newest'
+i=0
+:for
+if i<arrsize('number'):
+	*pl "<<number[i]>> 			<<sorted[i]>>			<<newest[i]>>"
+	i+=1
+	jump 'for'
+end
+
 --- !easy.math! ---------------------------------
