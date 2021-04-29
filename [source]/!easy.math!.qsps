@@ -28,5 +28,13 @@ if $args[0]="":
 elseif $args[0]='version':
 	result=2300
 end
-
+:for_rand
+if i<1000:
+	number[i]=rand(0,99999)
+	i+=1
+	jump 'for_rand'
+end
+old=msecscount
+gosub '#array.sort#','number'
+msecscount-old
 --- !easy.math! ---------------------------------
