@@ -1,11 +1,11 @@
 # #array.rstd#
 $args[0] = $args[0]
-$args[1] = $replace($args[1],'$')
+if instr($args[1],'$')=1: $args[1] = $mid($args[1],2)
 if $args[2] = '': $args[2] = $args[0]
 $args[9]=$args[9]
+if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''
 killvar 'easy_math_sort_array'
 killvar $args['$']+'easy_math_copy_array'
-if instr($args[0],'$')=1: $args['$']='$' else $args['$']=''
 copyarr 'easy_math_sort_array',$args[1]
 args['i']=0
 :for
@@ -15,4 +15,5 @@ if args['i'] < arrsize('easy_math_sort_array'):
 	jump 'for'
 end
 copyarr $args[2],$args['$']+"easy_math_copy_array"
+killvar $args['$']+'easy_math_copy_array'
 --- #array.rstd# ---------------------------------
