@@ -1,0 +1,17 @@
+# em.var.getType
+!@ функция получает тип переменной
+$args[0]=$args[0] & !@ имя переменной с $ иили без не важно
+if instr($args[0], '$')=1: $args[0]=$mid($args[0],2)
+args['string']=dyneval("if $<<$args[0]>><>'': result=1 else result=0")
+args['number']=dyneval("if <<$args[0]>><>0: result=1 else result=0")
+if args['string']=1 and args['number']=1:
+	$args['result']='both' & !@ в переменной содержатся оба типа данных. По сути это ошибка
+elseif args['string']=1 and args['number']=0:
+	$args['result']='string' & !@ переменная содержит текстовое значение
+elseif args['string']=0 and args['number']=1:
+	$args['result']='number' & !@ переменная содержит числовое значение
+elseif args['string']=0 and args['number']=0:
+	$args['result']='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
+end
+$result=$args['result']
+--- em.var.getType ---
