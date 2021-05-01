@@ -1,6 +1,6 @@
 # #array.sort#
 $args[0]=$args[0]
-$args[1]=$args[1]
+if $args[1]<>'down': $args[1]='up' else $args[1]=$args[1]
 $args[2]=$replace($args[2],'$')
 if $args[3]='': $args[3]=$args[0]
 $args[9]=$args[9]
@@ -23,7 +23,7 @@ args['i']=-1
 :prohody
 if arrsize($args['$']+'easy_math_copy_array')>0:
 	dynamic "
-		if $args[0]='up' or $args[0]='':
+		if $args[0]='up':
 			<<$args['$']>>args['find']=<<$args['$']>>max('<<$args['$']>>easy_math_copy_array')
 		elseif $args[0]='down':
 			<<$args['$']>>args['find']=<<$args['$']>>min('<<$args['$']>>easy_math_copy_array')
@@ -37,7 +37,6 @@ if arrsize($args['$']+'easy_math_copy_array')>0:
 		args['temp']=easy_math_sort_array[args['realpos']]
 		easy_math_sort_array[args['realpos']]=easy_math_sort_array[args[1]+1]
 		easy_math_sort_array[args[1]+1]=args['temp']
-
 	",$args[1],args['i']
 	args['i']+=1
 	jump 'prohody'

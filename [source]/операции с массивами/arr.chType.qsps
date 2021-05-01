@@ -1,0 +1,38 @@
+QSP-GAME Изменение типа массива
+# em.arr.chType
+$args[0]=$args[0] & !@ название массива
+if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление: [string] - преобразуем массив в строковый тип (значение по умолчанию) [number] - в числовой
+$args[1]=$lcase($args[1])
+if $args[2]='': $args[2]=$args[0] & !@ название результирующего массива
+if instr($args[0], '$')=1: $args[0]=$mid($args[0],2)
+if instr($args[2], '$')=1: $args[2]=$mid($args[2],2)
+killvar 'easy_math_temp'
+args['i']=0
+args['s']=arrsize($args[0])
+if instr($args[1],'[string]')<>0:
+	$args['$']='$'
+	:for_string
+	if args['i']<args['s']:
+		dynamic "
+			$easy_math_temp[args[0]]=$str(<<$args[0]>>[args[0]])
+		",args['i']
+		args['i']+=1
+		jump 'for_string'
+	end
+elseif instr($args[1],'[number]')<>0:
+	$args['$']='$'
+	:for_number
+	if args['i']<args['s']:
+		dynamic "
+			easy_math_temp[args[0]]=val($<<$args[0]>>[args[0]])
+		",args['i']
+		args['i']+=1
+		jump 'for_number'
+	end
+end
+if $args[0]=$args[2]:
+	killvar $args[0]
+end
+copyarr $args[2],$args['$']+'easy_math_temp'
+killvar 'easy_math_temp'
+--- em.arr.chType ---------------------------------
