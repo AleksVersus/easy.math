@@ -29,6 +29,7 @@ if len($args[0])>0:
 		$args['vs']=$args[0]
 		$args[0]=''
 	end
+	if instr($args[3],'[STRIP]')<>0: $args['vs']=$TRIM($args['vs'])
 	if ($args['vs']<>'' and $strfind($args[3],'NOTSPACE')<>'') or $strfind($args[3],'NOTSPACE')='':
 		if $strfind($args[3],'LEFT')='LEFT' and $strfind($args[3],'REGULAR')<>'REGULAR': $args['l']=$args[2]
 		if $strfind($args[3],'RIGHT')='RIGHT' and $strfind($args[3],'REGULAR')<>'REGULAR': $args['r']=$args[2]
