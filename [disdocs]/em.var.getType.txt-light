@@ -1,14 +1,13 @@
 ==Получение типа переменной==
 
-em.var.getType - функция получает тип переменной. Вызов:
+em.var.getType - функция получает тип переменной.
+
+$args[0] - имя переменной/массива. Можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива.
+
+Вызов:
 
 ```qsp
 	$func('em.var.getType', '$имя_переменной')
-```
-
-В качестве имени переменной можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива:
-
-```qsp
 	$func('em.var.getType', 'array["string"]')
 ```
 
@@ -32,3 +31,21 @@ em.var.getType - функция получает тип переменной. В
 	* 'empty' - этот результат означает, что переменная не создана, либо содержит значение по умолчанию, текстовое или числовое.
 
 Проверить тип локальных переменных с помощью данной функции нельзя.
+
+Примеры:
+
+```qsp
+	$string='text'
+	number=123
+	$varname[0]='text' & varname[0]=123
+	$emptyvar[0]=''
+	emptyvar[1]=0
+
+	$func('em.var.getType', '$string')='string'
+	$func('em.var.getType', 'number')='number'
+	$func('em.var.getType', '$number')='number'
+	$func('em.var.getType', 'string')='string'
+	$func('em.var.getType', '$varname')='both'
+	$func('em.var.getType', '$emptyvar[0]')='empty'
+	$func('em.var.getType', 'emptyvar[1]')='empty'
+```
