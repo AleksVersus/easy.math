@@ -2,7 +2,7 @@ QSP-GAME Изменение типа массива
 # em.arr.chType
 $args[0]=$args[0] & !@ название массива
 $args[1]=$lcase($args[1])
-if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление:
+if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление:>
 !@ [string] - преобразуем массив в строковый тип (значение по умолчанию),
 !@ [number] - в числовой,
 !@ [reverse] - меняет тип на противоположный
@@ -13,6 +13,7 @@ killvar 'easy_math_temp'
 if instr($args[1],'[reverse]')<>0: $args['type']='reverse'
 if instr($args[1],'[number]')<>0: $args['type']='number'
 if instr($args[1],'[string]')<>0: $args['type']='string'
+if instr($args[1],'[hard]')<>0: $args['hard']='hard'
 $args['dyn.StrInNum']="easy_math_temp[args[0]]=val($<<$args[0]>>[args[0]])"
 $args['dyn.NumInStr']="$easy_math_temp[args[0]]=$str(<<$args[0]>>[args[0]])"
 $args['dyn.StrInStr']="$easy_math_temp[args[0]]=$<<$args[0]>>[args[0]]"
@@ -25,6 +26,7 @@ if args['i']<args['s']:
 	!@ преобразуем в строковый
 	if $args['type']='string' and ($args['t']='string' or $args['t']='empty' or $args['t']='both'): $args['dyn']='StrInStr'
 	if $args['type']='string' and $args['t']='number': $args['dyn']='NumInStr'
+	if $args['type']='string' and $args['t']='empty' and $args['hard']='hard': $args['dyn']='NumInStr' 
 	!@ преобразуем в числовой
 	if $args['type']='number' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
 	if $args['type']='number' and ($args['t']='number' or $args['t']='both'): $args['dyn']='NumInNum'
@@ -32,7 +34,6 @@ if args['i']<args['s']:
 	if $args['type']='reverse' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
 	if $args['type']='reverse' and $args['t']='number': $args['dyn']='NumInStr'
 	if $args['type']='reverse' and $args['t']='both': $args['dyn']='both'
-
 	if $args['dyn']='StrInNum':
 		dynamic $args['dyn.StrInNum'],args['i']
 	elseif $args['dyn']='NumInStr':
