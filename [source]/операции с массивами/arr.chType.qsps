@@ -1,38 +1,57 @@
 QSP-GAME Изменение типа массива
 # em.arr.chType
 $args[0]=$args[0] & !@ название массива
-if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление: [string] - преобразуем массив в строковый тип (значение по умолчанию) [number] - в числовой
 $args[1]=$lcase($args[1])
+if $args[1]='': $args[1]='[string]' else $args[1]=$args[1] & !@ управление:
+!@ [string] - преобразуем массив в строковый тип (значение по умолчанию),
+!@ [number] - в числовой,
+!@ [reverse] - меняет тип на противоположный
 if $args[2]='': $args[2]=$args[0] & !@ название результирующего массива
 if instr($args[0], '$')=1: $args[0]=$mid($args[0],2)
 if instr($args[2], '$')=1: $args[2]=$mid($args[2],2)
 killvar 'easy_math_temp'
+if instr($args[1],'[reverse]')<>0: $args['type']='reverse'
+if instr($args[1],'[number]')<>0: $args['type']='number'
+if instr($args[1],'[string]')<>0: $args['type']='string'
+$args['dyn.StrInNum']="easy_math_temp[args[0]]=val($<<$args[0]>>[args[0]])"
+$args['dyn.NumInStr']="$easy_math_temp[args[0]]=$str(<<$args[0]>>[args[0]])"
+$args['dyn.StrInStr']="$easy_math_temp[args[0]]=$<<$args[0]>>[args[0]]"
+$args['dyn.NumInNum']="easy_math_temp[args[0]]=<<$args[0]>>[args[0]]"
 args['i']=0
 args['s']=arrsize($args[0])
-if instr($args[1],'[string]')<>0:
-	$args['$']='$'
-	:for_string
-	if args['i']<args['s']:
-		dynamic "
-			$easy_math_temp[args[0]]=$str(<<$args[0]>>[args[0]])
-		",args['i']
-		args['i']+=1
-		jump 'for_string'
+:for_reverse
+if args['i']<args['s']:
+	$args['t']=$func('em.var.getType','<<$args[0]>>[<<args["i"]>>]')
+	!@ преобразуем в строковый
+	if $args['type']='string' and ($args['t']='string' or $args['t']='empty' or $args['t']='both'): $args['dyn']='StrInStr'
+	if $args['type']='string' and $args['t']='number': $args['dyn']='NumInStr'
+	!@ преобразуем в числовой
+	if $args['type']='number' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
+	if $args['type']='number' and ($args['t']='number' or $args['t']='both'): $args['dyn']='NumInNum'
+	!@ для реверса
+	if $args['type']='reverse' and ($args['t']='string' or $args['t']='empty'): $args['dyn']='StrInNum'
+	if $args['type']='reverse' and $args['t']='number': $args['dyn']='NumInStr'
+	if $args['type']='reverse' and $args['t']='both': $args['dyn']='both'
+
+	if $args['dyn']='StrInNum':
+		dynamic $args['dyn.StrInNum'],args['i']
+	elseif $args['dyn']='NumInStr':
+		dynamic $args['dyn.NumInStr'],args['i']
+	elseif $args['dyn']='both':
+		dynamic $args['dyn.StrInStr'],args['i']
+		dynamic $args['dyn.NumInNum'],args['i']
+	elseif $args['dyn']='NumInNum':
+		dynamic $args['dyn.NumInNum'],args['i']
+	elseif $args['dyn']='StrInStr':
+		dynamic $args['dyn.StrInStr'],args['i']
 	end
-elseif instr($args[1],'[number]')<>0:
-	$args['$']='$'
-	:for_number
-	if args['i']<args['s']:
-		dynamic "
-			easy_math_temp[args[0]]=val($<<$args[0]>>[args[0]])
-		",args['i']
-		args['i']+=1
-		jump 'for_number'
-	end
+	args['i']+=1
+	jump 'for_reverse'
 end
 if $args[0]=$args[2]:
 	killvar $args[0]
 end
-copyarr $args[2],$args['$']+'easy_math_temp'
+copyarr $args[2],'easy_math_temp'
 killvar 'easy_math_temp'
+
 --- em.arr.chType ---------------------------------
