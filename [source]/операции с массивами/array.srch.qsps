@@ -1,6 +1,6 @@
 # #array.srch#
 if $args[0]='': $result='error' & exit
-if $args[1]='': $args[1]='max' else $args[1]=$LCASE($args[1])
+if $args[1]='': $args[1]='max' else $args[1]=$lcase($args[1])
 if $args[2]='':	args[2]=min($args[0]) else args[2]=val($args[2])
 if $args[3]='': args[3]=max($args[0]) else args[3]=val($args[3])
 if args[4] < 0: args[4]=0
@@ -36,6 +36,7 @@ if no args[4]>args[5]:
 			end 
 		else
 			$result='easy.math''s error. Please, tell me about it: aleksversus@mail.ru'
+			exit
 		end
 	end
 	args[4]+=1
