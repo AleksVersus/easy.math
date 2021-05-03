@@ -128,6 +128,96 @@
 					<br>$a['for']=''
 					<br>$a['of']='9432'
 				</p>
+            <a id="emmaxvar"></a><h4>em.maxVar</h4>
+                <p>Возвращает название переменной, содержащей максимальное значение.</p>
+                <p><span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - имена переменных или точное указание на ячейку массива. Пример:</p>
+                <p class="em_CODE">
+                    $func('em.maxVar','old_mass','new_mass','mass[23]','mass[45]')
+                </p>
+                <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
+                <p class="em_CODE">
+                    $func('em.maxVar','old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')
+                </p>
+                <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
+                <p>Если нужно провести поиск максимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
+                <p class="em_CODE">
+                    $func('em.maxVar','old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')
+                </p>
+                <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
+                <p>Список управляющих конструкций:</p>
+                <ul>
+                    <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих максимальное значение, если это значение присутствует во всех этих переменных.</li>
+                    <li><span class="emTEXT">[max]</span> - в этом режиме функция производит поиск максимального значения. Режим по умолчанию, т.е. можно не указывать.</li>
+                    <li><span class="emTEXT">[min]</span> - в этом режиме функция производит поиск минимального значения. Имеет приоритет над <span class="emTEXT">[max]</span>, если указаны оба.</li>
+                </ul>
+                <p class="em_CODE">
+                    $func('em.maxVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
+                </p>
+                <p>Результат работы функции:</p>
+                <p class="em_CODE">
+                     old_mass[0]=788
+                <br/>old_mass[1]=136
+                <br/>old_mass[2]=788
+                <br/>old_mass[3]=177
+                <br/>old_mass[4]=75
+                <br/>old_mass[5]=97
+                <br/>old_mass[6]=649
+                <br/>old_mass[7]=75
+                    <br/>
+                <br/>$func('em.maxVar','old_mass/arr')
+                <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[0]'</span>
+                <br/>$func('em.maxVar','old_mass/arr','[list]')
+                <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[0]
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[2]'</span>
+                <br/>$func('em.maxVar','old_mass/arr','[list][min]')
+                <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
+                </p>
+                <p>Скорость работы функции 4 мс на 100 000 значений. Или 4 секунды на 10 000 000 значений. </p>
+            <a id="emminvar"></a><h4>em.minVar</h4>
+                <p>Возвращает название переменной, содержащей минимальное значение.</p>
+                <p><span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - имена переменных или точное указание на ячейку массива. Пример:</p>
+                <p class="em_CODE">
+                    $func('em.minVar','old_mass','new_mass','mass[23]','mass[45]')
+                </p>
+                <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
+                <p class="em_CODE">
+                    $func('em.minVar','old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')
+                </p>
+                <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
+                <p>Если нужно провести поиск минимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
+                <p class="em_CODE">
+                    $func('em.minVar','old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')
+                </p>
+                <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
+                <p>Список управляющих конструкций:</p>
+                <ul>
+                    <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих минимальное значение, если это значение присутствует во всех этих переменных.</li>
+                </ul>
+                <p class="em_CODE">
+                    $func('em.minVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
+                </p>
+                <p>Результат работы функции:</p>
+                <p class="em_CODE">
+                    old_mass[0]=788
+                <br/>old_mass[1]=136
+                <br/>old_mass[2]=788
+                <br/>old_mass[3]=177
+                <br/>old_mass[4]=75
+                <br/>old_mass[5]=97
+                <br/>old_mass[6]=649
+                <br/>old_mass[7]=75
+                    <br/>
+                <br/>$func('em.minVar','old_mass/arr')
+                <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]'</span>
+                <br/>$func('em.minVar','old_mass/arr','[list]')
+                <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
+                <br/>$func('em.minVar','old_mass/arr','[list][max]') &amp; ! в данном случае поиск максимального работать не будет!!!
+                <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
+                </p>
+                <p>Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
 			<hr>
 			<h4>Примечания:</h4>
 			<p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего тегов. Содержимое тегов - это информация, которую они отмечают, или выделяют.</p>
