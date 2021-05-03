@@ -1,0 +1,21 @@
+QSP-Game Поиск названия переменной с минимальным значением
+Это надстройка над функцией maxVar для удобства
+# em.minVar
+$args[9]=$args[9]
+if $args[0]='': killvar '$args',0
+args['i']=1
+:for
+if args['stop']=0 and args['i']<9:
+	$args['comm']=$strfind($lcase($args[args['i']]),'\[(list|max|min)\]')
+	if $args['comm']<>'' or $args[args['i']]='':
+		args['stop']=1
+		$args['last']=$args[args['i']]+"[min]"
+	else:
+		$args[0]+=','+$replace($args[args['i']],',','%&#44;%')
+		args['i']+=1
+		jump 'for'
+	end
+end
+$args['result']=$func('em.maxVar',$args[0],$args['last'])
+$result=$args['result']
+- em.minVar
