@@ -130,7 +130,11 @@
 				</p>
             <a id="emmaxvar"></a><h4>em.maxVar</h4>
                 <p>Возвращает название переменной, содержащей максимальное значение.</p>
-                <p><span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - имена переменных или точное указание на ячейку массива. Пример:</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
+                    <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
+                </p>
+                <p>Пример:</p>
                 <p class="em_CODE">
                     $func('em.maxVar','old_mass','new_mass','mass[23]','mass[45]')
                 </p>
@@ -153,7 +157,7 @@
                 <p class="em_CODE">
                     $func('em.maxVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
                 </p>
-                <p>Результат работы функции:</p>
+                <h5>Результат работы функции:</h5>
                 <p class="em_CODE">
                      old_mass[0]=788
                 <br/>old_mass[1]=136
@@ -176,7 +180,11 @@
                 <p>Скорость работы функции 4 мс на 100 000 значений. Или 4 секунды на 10 000 000 значений. </p>
             <a id="emminvar"></a><h4>em.minVar</h4>
                 <p>Возвращает название переменной, содержащей минимальное значение.</p>
-                <p><span class="emVAR">$args[<span class="emNUM">0</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - имена переменных или точное указание на ячейку массива. Пример:</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
+                    <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
+                </p>
+                <p> Пример:</p>
                 <p class="em_CODE">
                     $func('em.minVar','old_mass','new_mass','mass[23]','mass[45]')
                 </p>
@@ -197,7 +205,7 @@
                 <p class="em_CODE">
                     $func('em.minVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
                 </p>
-                <p>Результат работы функции:</p>
+                <h5>Результат работы функции:</h5>
                 <p class="em_CODE">
                     old_mass[0]=788
                 <br/>old_mass[1]=136
@@ -218,6 +226,47 @@
                 <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
                 </p>
                 <p>Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
+            <h4>em.var.getType</h4>
+                <p>Функция получает тип переменной.</p>
+                <p class="em_CODE"><span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя переменной/массива. Можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива.</p>
+                <p>Вызов:</p>
+                <p class="em_CODE">
+                    $func('em.var.getType', '$имя_переменной')
+                    <br/>$func('em.var.getType', 'array["string"]')
+                </p>
+                <p>Символ <span class="emTEXT">"$"</span> перед названием переменной при определении типа роли не играет.</p>
+                <p>Обратите внимание: функция написана для версии плеера 5.7.0 и ниже, поэтому она возвращает результат сообразно принципу работы массивов для плееров версии 5.7.0 и ниже.</p>
+                <p>Результатом работы функции является строка:</p>
+                <ul>
+                    <li><span class="emTEXT">'both'</span> - этот результат означает, что существуют как текстовое, так и числовое значение для указанной переменной. В плеерах версии 5.7.0 и ниже в одном массиве под одним и тем же индексом можно хранить как текстовое так и числовое значение. Например:</li>
+                <p class="em_CODE">
+                    $varname[1]='text' &amp; varname[1]=234
+                </p>
+                    <p>	В этом случае функция вернёт строку <span class="emTEXT">'both'</span></p>
+                    <li><span class="emTEXT">'string'</span> - этот результат означает, что переменная содержит только текстовое значение отличное от значения переменной по умолчанию.</li>
+                </ul>
+                <ul>
+                    <li><span class="emTEXT">'number'</span> - этот результат означает, что переменная содержит только числовое значение отличное от значения переменной по умолчнаию.</li>
+                </ul>
+                <ul>
+                    <li><span class="emTEXT">'empty'</span> - этот результат означает, что переменная не создана, либо содержит значение по умолчанию, текстовое или числовое.</li>
+                </ul>
+                <p>Проверить тип локальных переменных с помощью данной функции нельзя.</p>
+                <h5>Примеры:</h5>
+                <p class="em_CODE">
+                $string='text'
+                    <br/>	number=123
+                    <br/>	$varname[0]='text' &amp; varname[0]=123
+                    <br/>	$emptyvar[0]=''
+                    <br/>	emptyvar[1]=0
+                    <br/>	$func('em.var.getType','$string')=<span class="emTEXT">'string'</span>
+                    <br/>	$func('em.var.getType','number')=<span class="emTEXT">'number'</span>
+                    <br/>	$func('em.var.getType','$number')=<span class="emTEXT">'number'</span>
+                    <br/>	$func('em.var.getType','string')=<span class="emTEXT">'string'</span>
+                    <br/>	$func('em.var.getType','$varname')=<span class="emTEXT">'both'</span>
+                    <br/>	$func('em.var.getType','$emptyvar[0]')=<span class="emTEXT">'empty'</span>
+                    <br/>	$func('em.var.getType','emptyvar[1]')=<span class="emTEXT">'empty'</span>
+                </p>
 			<hr>
 			<h4>Примечания:</h4>
 			<p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего тегов. Содержимое тегов - это информация, которую они отмечают, или выделяют.</p>
