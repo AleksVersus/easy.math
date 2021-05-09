@@ -26,6 +26,6 @@ if $args[0]="":
 
 	"
 elseif $args[0]='version':
-	result=2300
+	result=2314
 end
 --- !easy.math! ---------------------------------
