@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="D:\my\GameDev\QuestSoftPlayer\games\+lib+\easy.math\[manual]\res\css\easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="D:\my\GameDev\QuestSoftPlayer\games\+lib+\easy.math\[manual]\res\css\offline.window.css" />
+    <title>Easy Math — Manuals</title>
+</head>
+<body>
+    <div class="em_AROUND">
+<h1>Изменение типа массива</h1>
+<p>em.arr.chType - процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.</p>
+
+<div class="em_CODE">
+$args[0] - название массива, для которого требуется поменять тип. Можно указывать как с символом '$', так и без него перед именем.<br/>$args[1] - управление. [string] - все ячейки массива приводятся к строковому типу; [number] - все ячейки массива приводятся к числовому типу; [reverse] - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться); [hard] - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.getType"), принудитльно присваивается строковое значение "0".<br/>$args[2] - результирующий массив. Если не указано, результат помещается в исходный массив.
+</div>
+<p>Скорость работы функции: около 17 секунд на 100 000 элементов.</p>
+<p></p>
+<h4>Примеры:</h4>
+<p>Изменение типа ячеек на противоположный:</p>
+
+<div class="em_CODE">
+	! пример исходного массива	! исходные типы	! типы после reverse	! значения после reverse
+<br/>	$mass[0]='123'				& ! string		! number				! 123
+<br/>	$mass[1]='456'				& ! string		! number				! 456
+<br/>	mass[2]=789					& ! number		! string				! '789'
+<br/>	mass[3]=901					& ! number		! string				! '901'
+<br/>	$mass[4]='444' & mass[4]=44	& ! both		! both					! '444' & 44
+<br/>	$mass[5]='555' & mass[5]=55	& ! both		! both					! '555' & 55
+<br/>	$mass[6]='' & mass[6]=0		& ! empty		! empty					! '' & 0
+<br/>	$mass[7]=''					& ! empty		! empty					! '' & 0
+<br/>	$mass[8]='123' & mass[8]=0	& ! string		! number				! 123
+<br/>	mass[9]=4569 & $mass[9]=''	& ! number		! string				! '4569'
+</div>
+<p>Изменение типа ячеек на строковый:</p>
+
+<div class="em_CODE">
+	! пример исходного массива	! исходные типы	! типы после string		! значения после string
+<br/>	$mass[0]='123'				& ! string		! string				! '123'
+<br/>	$mass[1]='456'				& ! string		! string				! '456'
+<br/>	mass[2]=789					& ! number		! string				! '789'
+<br/>	mass[3]=901					& ! number		! string				! '901'
+<br/>	$mass[4]='444' & mass[4]=44	& ! both		! string				! '444'
+<br/>	$mass[5]='555' & mass[5]=55	& ! both		! string				! '555'
+<br/>	$mass[6]='' & mass[6]=0		& ! empty		! empty					! '' & 0
+<br/>	$mass[7]=''					& ! empty		! empty					! '' & 0
+<br/>	$mass[8]='123' & mass[8]=0	& ! string		! string				! '123'
+<br/>	mass[9]=4569 & $mass[9]=''	& ! number		! string				! '4569'
+</div>
+<p>Изменение типа ячеек на числовой:</p>
+
+<div class="em_CODE">
+	! пример исходного массива	! исходные типы	! типы после number		! значения после number
+<br/>	$mass[0]='123'				& ! string		! number				! 123
+<br/>	$mass[1]='456'				& ! string		! number				! 456
+<br/>	mass[2]=789					& ! number		! number				! 789
+<br/>	mass[3]=901					& ! number		! number				! 901
+<br/>	$mass[4]='444' & mass[4]=44	& ! both		! number				! 44
+<br/>	$mass[5]='555' & mass[5]=55	& ! both		! number				! 55
+<br/>	$mass[6]='' & mass[6]=0		& ! empty		! empty					! '' & 0
+<br/>	$mass[7]=''					& ! empty		! empty					! '' & 0
+<br/>	$mass[8]='123' & mass[8]=0	& ! string		! number				! 123
+<br/>	mass[9]=4569 & $mass[9]=''	& ! number		! number				! 4569
+</div>
+
+</body>
+</html>

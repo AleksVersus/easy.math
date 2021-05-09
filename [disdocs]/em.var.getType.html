@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="D:\my\GameDev\QuestSoftPlayer\games\+lib+\easy.math\[manual]\res\css\easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="D:\my\GameDev\QuestSoftPlayer\games\+lib+\easy.math\[manual]\res\css\offline.window.css" />
+    <title>Easy Math — Manuals</title>
+</head>
+<body>
+    <div class="em_AROUND">
+<h1>Получение типа переменной</h1>
+<p>em.var.getType - функция получает тип переменной.</p>
+<p>$args[0] - имя переменной/массива. Можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива.</p>
+<p>Вызов:</p>
+
+<div class="em_CODE">
+	$func('em.var.getType', '$имя_переменной')
+<br/>	$func('em.var.getType', 'array["string"]')
+</div>
+<p>Символ "$" перед названием переменной при определении типа роли не играет.</p>
+<p>Обратите внимание: функция написана для версии плеера 5.7.0 и ниже, поэтому она возвращает результат сообразно принципу работы массивов для плееров версии 5.7.0 и ниже.</p>
+<p>Результатом работы функции является строка:</p>
+
+<ul>
+<li>'both' - этот результат означает, что существуют как текстовое, так и числовое значение для указанной переменной. В плеерах версии 5.7.0 и ниже в одном массиве под одним и тем же индексом можно хранить как текстовое так и числовое значение. Например:
+<div class="em_CODE">
+	$varname[1]='text' & varname[1]=234
+</div>
+	В этом случае функция вернёт строку 'both'</li>
+<li>'string' - этот результат означает, что переменная содержит только текстовое значение отличное от значения переменной по умолчанию.</li>
+<li>'number' - этот результат означает, что переменная содержит только числовое значение отличное от значения переменной по умолчнаию.</li>
+<li>'empty' - этот результат означает, что переменная не создана, либо содержит значение по умолчанию, текстовое или числовое.</li>
+
+</ul>
+<p>Проверить тип локальных переменных с помощью данной функции нельзя.</p>
+<p>Примеры:</p>
+
+<div class="em_CODE">
+	$string='text'
+<br/>	number=123
+<br/>	$varname[0]='text' & varname[0]=123
+<br/>	$emptyvar[0]=''
+<br/>	emptyvar[1]=0<br/>	$func('em.var.getType', '$string')='string'
+<br/>	$func('em.var.getType', 'number')='number'
+<br/>	$func('em.var.getType', '$number')='number'
+<br/>	$func('em.var.getType', 'string')='string'
+<br/>	$func('em.var.getType', '$varname')='both'
+<br/>	$func('em.var.getType', '$emptyvar[0]')='empty'
+<br/>	$func('em.var.getType', 'emptyvar[1]')='empty'
+</div>
+
+</body>
+</html>
