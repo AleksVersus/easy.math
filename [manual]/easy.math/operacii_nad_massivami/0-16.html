@@ -960,6 +960,165 @@
 					<br>mass[3]=3
 					<br>mass[4]=1
 				</p>
+        <a id="emarrchtype"></a><h4>em.arr.chType</h4>
+            <p>Процедура изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.</p>
+            <div class="em_CODE">
+                <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - название массива, для которого требуется поменять тип. Можно указывать как с символом <span class="emTEXT">'$'</span>, так и без него перед именем.
+                <br/> <span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управление:
+                <ul style="margin-top:0.25em;margin-bottom:0.25em;">
+                    <li><span class="emTEXT">[string]</span> - все ячейки массива приводятся к строковому типу;</li>
+                    <li><span class="emTEXT">[number]</span> - все ячейки массива приводятся к числовому типу;</li>
+                    <li><span class="emTEXT">[reverse]</span> - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);</li>
+                    <li><span class="emTEXT">[hard]</span> - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.getType"), принудительно присваивается строковое значение "0".</li>
+                </ul>
+                <span class="emVAR">$args[<span class="emNUM">2</span>]</span> - результирующий массив. Если не указано, результат помещается в исходный массив.
+
+            </div>
+            <h5>Результаты работы функции:</h5>
+            <p>Изменение типа ячеек на противоположный:</p>
+            <p class="em_CODE">
+                <span class="emCOMM">
+                    ! пример исходного массива&nbsp;&nbsp;&amp;&nbsp;
+                    ! исходные типы	! типы после reverse	
+                    ! значения после reverse</span>
+            <br/>	$mass[0]='123'
+                <span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp; ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 123</span>
+            <br/>	$mass[1]='456'<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 456</span>
+            <br/>	mass[2]=789<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '789'</span>
+            <br/>	mass[3]=901<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '901'</span>
+            <br/>	$mass[4]='444' &amp; mass[4]=44<span class="emCOMM"> &amp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '444' &amp; 44</span>
+            <br/>	$mass[5]='555' &amp; mass[5]=55<span class="emCOMM"> &amp;
+                ! both		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '555' &amp; 55</span>
+            <br/>	$mass[6]='' &amp; mass[6]=0<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '' &amp; 0</span>
+            <br/>	$mass[7]=''<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '' &amp; 0</span>
+            <br/>	$mass[8]='123' &amp; mass[8]=0<span class="emCOMM">&nbsp;	&amp;
+                ! string	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 123</span>
+            <br/>	mass[9]=4569 &amp; $mass[9]=''<span class="emCOMM">&nbsp;	&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '4569'</span>
+            </p>
+            <p>Изменение типа ячеек на строковый:</p>
+            <p class="em_CODE">
+                <span class="emCOMM">! пример исходного массива&nbsp;&nbsp;&amp;
+                    ! исходные типы
+                    ! типы после string	
+                    ! значения после string</span>
+            <br/>	$mass[0]='123'<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '123'</span>
+            <br/>	$mass[1]='456'<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '456'</span>
+            <br/>	mass[2]=789<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '789'</span>
+            <br/>	mass[3]=901<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '901'</span>
+            <br/>	$mass[4]='444' &amp; mass[4]=44<span class="emCOMM"> &amp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '444'</span>
+            <br/>	$mass[5]='555' &amp; mass[5]=55	<span class="emCOMM">&amp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '555'</span>
+            <br/>	$mass[6]='' &amp; mass[6]=0	<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '' &amp; 0</span>
+            <br/>	$mass[7]=''<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '' &amp; 0</span>
+            <br/>	$mass[8]='123' &amp; mass[8]=0<span class="emCOMM">&nbsp;&nbsp;&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '123'</span>
+            <br/>	mass[9]=4569 &amp; $mass[9]=''<span class="emCOMM">&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '4569'</span>
+            </p>
+            <p>Изменение типа ячеек на числовой:</p>
+            <p class="em_CODE">
+                <span class="emCOMM">
+                    ! пример исходного массива&nbsp;&nbsp;&amp;
+                    ! исходные типы
+                    ! типы после number
+                    ! значения после number
+                </span>
+            <br/>	$mass[0]='123'<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 123</span>
+            <br/>	$mass[1]='456'<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 456</span>
+            <br/>	mass[2]=789<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 789</span>
+            <br/>	mass[3]=901<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 901</span>
+            <br/>	$mass[4]='444' &amp; mass[4]=44	<span class="emCOMM">&amp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 44</span>
+            <br/>	$mass[5]='555' &amp; mass[5]=55<span class="emCOMM">&nbsp;&amp;
+                ! both&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 55</span>
+            <br/>	$mass[6]='' &amp; mass[6]=0<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '' &amp; 0</span>
+            <br/>	$mass[7]=''<span class="emCOMM">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! '' &amp; 0</span>
+            <br/>	$mass[8]='123' &amp; mass[8]=0&nbsp;&nbsp;<span class="emCOMM">&amp;
+                ! string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 123</span>
+            <br/>	mass[9]=4569 &amp; $mass[9]=''&nbsp;&nbsp;<span class="emCOMM">&amp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ! 4569</span>
+            </p>
+            <p>Скорость работы функции: около 17 секунд на 100 000 элементов.</p>
 		<div><a href="../manual.html">Назад</a></div>
 	</div>
 	<div class="em_Epigraph">
