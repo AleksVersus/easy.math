@@ -1,0 +1,17 @@
+QSP-Game Функция выбрасывания случайного числа в промежутках
+func('em.random','10-24','34-49')
+# em.random
+$args[9]=$args[9] & !@ промежутки вида 10-24 34-49 и т.д.
+killvar 'easy_math_temp'
+args['i']=0
+:for
+if strcomp($args[args['i']],'\d+\-\d+')<>0:
+	args['1']=val($func('get.word.inPos',$args[args['i']],1,'-'))
+	args['2']=val($func('get.word.inPos',$args[args['i']],2,'-'))
+	easy_math_temp[]=rand(args['1'],args['2'])
+	args['i']+=1 & jump 'for'
+end
+args['result']=easy_math_temp[rand(0,arrsize('easy_math_temp')-1)]
+killvar 'easy_math_temp'
+result=args['result']
+--- em.random ---------------------------------
