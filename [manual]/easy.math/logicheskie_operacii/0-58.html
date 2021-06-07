@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../../res/css/easy.library.css" />
+    <link type="text/css" rel="stylesheet" href="../../res/css/offline.window.css" />
+	<title>Easy Math — Logic Operations</title>
+</head>
+<body>
+
+        <div class="em_AROUND">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.3.14/easy.math.2.3.14.rar" title="скачать последнюю версию библиотеки в формате rar">
+                <h1>easy.math.qsp v 2.3.14</h1>
+            </a>
+            <!-- Исправить ссылку -->
+            <div class="em_PAGE">
+                <div><a href="../manual.html">Назад</a></div>
+                
+                <h3 class="emH3">Логические операции</h3>
+                
+                <a id="add"></a><h4 class="emH4">#add#</h4>
+                
+                <p>Функция выполняет логическое сложение двух чисел. Вернее сказать сложение с переполнением. Складывать можно два числа абсолютно любой длины (ограничения для числовых значений аргументов связаны с ограничением на значения переменных для вашего плеера).</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - первое число (сколько угодно длинное), можно <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> (ограниченное значение).
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - второе число (сколько угодно длинное), можно <span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> (ограниченное значение).
+                </p>
+                <p>Любой посторонний символ интерпретируется, как <span class="emNUM">0</span> (нуль). Т.е. суммируются только целые положительные числа.</p>
+                <p>Использует функцию <span class="emFOLD">#zero#</span>.</p>
+                <p>Суммирует два целых числа любой длины по следующим правилам:</p>
+                <ul>
+                    <li>
+                        <p>Каждое число представляет собой запись из цифр. Цифры условно назовём байтами, само число - словом.</p>
+                    </li>
+                    <li>
+                        <p>Количество байтов в одном слове может быть больше, чем в другом. В таком случае слово с меньшим количеством байтов приводится к длине слова с большим количеством байтов.</p>
+                        <p class="em_CODE">
+                            Например&nbsp;998765
+                            <br>и&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;273
+                            <br>273 приводится к длине 998765 добавлением недостающих байтов.
+                            <br>273&nbsp;->&nbsp;&nbsp;&nbsp;000273
+                        </p>
+                    </li>
+                    <li>
+                        <p>Байты нумеруются справа налево! По разрядам, начиная с нулевого.</p>
+                        <p class="em_CODE">
+                            слово&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;998765
+                            <br>номер&nbsp;байта&nbsp;543210
+                        </p>
+                    </li>
+                    <li><p>Слова суммируются побайтово (поразрядно), начиная с нулевого. Итог вычислений записывается в слово Сумма.</p></li>
+                    <li>
+                        <p>Если при суммировании байтов на одном разряде происходит переполнение, т.е. число оказывается больше одного разряда, лишний разряд переносится на следующий байт.</p>
+                        <p>Пример:</p>
+                        <p class="em_CODE">
+                            998765
+                            <br>+
+                            <br>000273
+                            <br>------
+                            <br>999038&nbsp;:&nbsp;/5+3=8/6+7=<span class="em_RED">1</span>3/2+7+<span class="em_RED">1</span>=<span class="emFUNC">1</span>0/8+<span class="emFUNC">1</span>+0=9/9+0=9/9+0=9/
+                            <br>999038&nbsp;:&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;8/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9/&nbsp;&nbsp;&nbsp;&nbsp;9/&nbsp;&nbsp;&nbsp;&nbsp;9/
+                        </p>
+                    </li>
+                    <li>
+                        <p>В случае если переполнение происходит на суммировании последних байтов, лишний разряд переносится на нулевой байт Суммы.</p>
+                        <p>Пример:</p>
+                        <p class="em_CODE">
+                            &nbsp;998765
+                            <br>&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br>&nbsp;001273
+                            <br>&nbsp;------
+                            <br><span style="color:#888888;text-decoration:line-through;">1</span>000038&nbsp;-&nbsp;слово Сумма
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+1
+                            <br>&nbsp;------
+                            <br>&nbsp;000039&nbsp;-&nbsp;итог. слово Сумма. Будет записано в $result
+                        </p>
+                    </li>
+                    <li>
+                        <p>Результатом работы функции является слово Сумма. Это текстовая запись числа без потери разрядов. Т.е. если были два числа: из пяти символов и из двух символов, - результат обязательно будет состоять из пяти символов.</p>
+                    </li>
+                </ul>
+                <h5>Результат работы функции:</h5>
+                <p class="em_CODE">
+                    $func('#add#',998765,273) = 999038<br>
+                    $func('#add#','9987Y5','-273') = 998978<br>
+                    $func('#add#','999999','6273') = 006273
+                    <br>$func('#add#','998705','5773') = 004479
+                </p>
+                
+                <a id="dev"></a><h4 class="emH4">#dev#</h4>
+                
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - уменьшаемое (любой длины), можно <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> (ограниченное значение).
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - вычитаемое (любой длины), можно <span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> (ограниченное значение).
+                </p>
+                <p>Результат - текстовое значение (слово Сумма) без потери разрядов.</p>
+                <p>Использует функцию <span class="emFOLD">#zero#</span>.</p>
+                <p>логическое вычитание. Вычитает из одного числа другое. Оба числа приводятся к одной длине по аналогии с <span class="emFOLD">#add#</span>.</p>
+                <p>Далее происходит поразрядное вычитание. Причём если в результате получается отрицательное число в байт записывается 10+число, в следующий разряд переносится -1</p>
+                <p>Пример:</p>
+                <p class="em_CODE">
+                    990763<br>
+                    -<br>
+                    099271<br>
+                    ------<br>
+                    981492<br>
+                </p>
+                <p>Если отрицательное число получается на последнем байте последний байт вычисляется по общим правилам, а из нулевого байта Суммы вычитается 1.</p>
+                <h5>Результат работы функции:</h5>
+                <p class="em_CODE">
+                    $func('#dev#',998765,273) = 998492<br>
+                    $func('#dev#','9987Y5','-273') = 998432
+                    <br>$func('#dev#','999999','6273') = 993726
+                    <br>$func('#dev#','998705','5773') = 992932
+                </p>
+                
+                <a id="rtp"></a><h4 class="emH4">#rtp#</h4>
+                
+                <p>Процедура меняет местами значение двух переменных.</p>
+                <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя первой переменной
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - имя второй переменной
+                </p>
+                <p>Пример использования:</p>
+                <p class="em_CODE">
+                    a=6
+                    <br>b=9
+                    <br>gosub '#rtp#','a','b'
+                    <br>a
+                    <br>b
+                    <br>
+                    <br>$c[0]='citated'
+                    <br>$d[19]='legated'
+                    <br>gosub '#rtp#','$c[0]','$d[19]'
+                    <br>$c[0]
+                    <br>$d[19]
+                </p>
+                <h5>Результат работы функции:</h5>
+                <p class="em_CODE">9
+                    <br>6
+                    <br>legated
+                    <br>citated
+                </p>
+                <div><a href="../manual.html">Назад</a></div>
+            </div>
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
+            </div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
+
+</body>
+</html>

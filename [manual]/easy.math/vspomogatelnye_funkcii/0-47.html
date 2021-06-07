@@ -8,306 +8,308 @@
 </head>
 <body>
 <div class="em_AROUND">
-	<a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.3.14/easy.math.2.3.14.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.14</h1></a>
-	<div class="em_PAGE">
-		<div><a href="../manual.html">Назад</a></div>
-		<h3>Вспомогательные функции</h3>
-			<a id="getwordinpos"></a><h4>get.word.inPos</h4>
-		<a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-		<p>Функция из строки вида <span class="emTEXT">aaa|bbb|ccc|...|yyy|zzz</span> получает подстроку, стоящую в указанной позиции. Подстроки помещаются между разделителями. По умолчанию разделителем является вертикальная черта.</p>
-        <p class="em_CODE">
-            <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - строка
-            <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - позиция, из которой нужно получить подстроку.
-            <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель. По умолчанию в качестве разделителя используется вертикальная черта.
-        </p>
-        <h5>Результат работы функции:</h5>
-		<p>Заготовленная строка:</p>
-        <p class="em_CODE">$text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"</p>
-        <p>Примеры работы функции:</p>
-        <p class="em_CODE">
-            $func('get.word.inPos',$text,2)="Февраль"
-            <br>$func('get.word.inPos',$text,5)="Май"
-            <br>$func('get.word.inPos',$text,8)="Август"
-            <br>$func('get.word.inPos',$text,11)="Ноябрь"
-            <br>$func('get.word.inPos',$text,14)="Декабрь"
-            <br>$func('get.word.inPos',$text,2,"ь")="|Феврал"
-            <br>$func('get.word.inPos',$text,5,"р")="ель|Май|Июнь|Июль|Август|Сентяб"
-            <br>$func('get.word.inPos',$text,8,"е")="кабрь"
-            <br>$func('get.word.inPos',$text,11,"я")="брь|Декабрь"
-            <br>$func('get.word.inPos',$text,14,"а")="брь"
-            <br>$func('get.word.inPos',$text,3,"брь")="рь|Нояб"
-        </p>
-        <a id="gettagnum"></a><h4>get.tag.num</h4>
-        <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-        <p>Получает содержимое одиночного тега<a href="#bottom1" id="upping1" class="em_PRIM">[1]</a> из строки.
-		<p>Порядок вызова функции:</p>
-        <p class="em_CODE">
-            <span class="emFUNC">$func</span>(<span class="emTEXT">'get.tag.num'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
-            <br><span class="emFUNC">func</span>(<span class="emTEXT">'get.tag.num'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
-        </p>
-        <p>, где</p>
-        <p class="em_CODE">
-            <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, содержащий тег.
-            <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
-        </p>
-        <p>Результатом может быть текстовое или числовое значение.</p>
-        <p>Примеры одиночных тегов с корнем <span class="emFOLD">tag</span>:</p>
-        <p class="em_CODE">
-            <span class="emFOLD">tag</span><span class="emOPRT">:</span><span class="emTEXT">non_space_symbols</span>
-            <br><span class="emOPRT"><span class="emFOLD">tag</span>=#<span class="emTEXT">non_space_symbols</span></span>
-            <br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>&gt;</span>
-            <br><span class="emOPRT">[<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>]</span>
-            <br><span class="emOPRT">{<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>}</span>
-            <br><span class="emOPRT">(<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>)</span>
-            <br><span class="emOPRT"><span class="emFOLD">tag</span>="<span class="emTEXT">any symbols</span>"</span>
-            <br><span class="emOPRT"><span class="emFOLD">tag</span>='<span class="emTEXT">any symbols</span>'</span>
-        </p>
-        <p>Первые два типа записей не должны содержать пробельных символов, остальные - могут. Тем не менее не рекомендуется использовать данную функцию для извлечения данных с пробельными символами.</p>
-        <h5>Результат работы функции:</h5>
-        <p>Заготовленная строка:</p>
-        <p class="em_CODE">
-            $text=<span class="emTEXT">"[count:текст с пробелом] &lt;cord:68&gt; log:непробельные_символы color=#ff8899 tag='многа букав'"</span>
-        </p>
-        <p>Извлечённые значения:</p>
-        <p class="em_CODE">
-            $func('get.tag.num',$text,'count')="<span class="emTEXT">текст с пробелом</span>"
-            <br>func('get.tag.num',$text,'cord')=<span class="emNUM">68</span>
-            <br>$func('get.tag.num',$text,'log')="<span class="emTEXT">непробельные_символы</span>"
-            <br>$func('get.tag.num',$text,'color')="<span class="emTEXT">ff8899</span>"
-            <br>$func('get.tag.num',$text,'tag')="<span class="emTEXT">многа букав</span>"
-        </p>
-        <a id="gettagcont"></a><h4>get.tag.cont</h4>
-            <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-            <p>Получает содержимое двойного тега из строки.</p>
-            <p>Пример вызова функции:</p>
-            <p class="em_CODE">
-                <span class="emFUNC">$func</span>(<span class="emTEXT">'get.tag.cont'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
-            <p>,
-            где
-            <p class="em_CODE">
+            <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.3.14/easy.math.2.3.14.rar" title="скачать последнюю версию библиотеки в формате rar"><h1>easy.math.qsp v 2.3.14</h1></a>
+            <div class="em_PAGE">
+                <div><a href="../manual.html">Назад</a></div>
+                <h3>Вспомогательные функции</h3>
+                <a id="getwordinpos"></a><h4>get.word.inPos</h4>
+                    
+                    <p>Функция из строки вида <span class="emTEXT">aaa|bbb|ccc|...|yyy|zzz</span> получает подстроку, стоящую в указанной позиции. Подстроки помещаются между разделителями. По умолчанию разделителем является вертикальная черта.</p>
+                    <p class="em_CODE">
+                        <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - строка
+                        <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - позиция, из которой нужно получить подстроку.
+                        <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - разделитель. По умолчанию в качестве разделителя используется вертикальная черта.
+                    </p>
+                    <h5>Результат работы функции:</h5>
+                    <p>Заготовленная строка:</p>
+                    <p class="em_CODE">$text="Январь|Февраль|Март|Апрель|Май|Июнь|Июль|Август|Сентябрь|Октябрь|Ноябрь|Декабрь"</p>
+                    <p>Примеры работы функции:</p>
+                    <p class="em_CODE">
+                        $func('get.word.inPos',$text,2)="Февраль"
+                        <br>$func('get.word.inPos',$text,5)="Май"
+                        <br>$func('get.word.inPos',$text,8)="Август"
+                        <br>$func('get.word.inPos',$text,11)="Ноябрь"
+                        <br>$func('get.word.inPos',$text,14)="Декабрь"
+                        <br>$func('get.word.inPos',$text,2,"ь")="|Феврал"
+                        <br>$func('get.word.inPos',$text,5,"р")="ель|Май|Июнь|Июль|Август|Сентяб"
+                        <br>$func('get.word.inPos',$text,8,"е")="кабрь"
+                        <br>$func('get.word.inPos',$text,11,"я")="брь|Декабрь"
+                        <br>$func('get.word.inPos',$text,14,"а")="брь"
+                        <br>$func('get.word.inPos',$text,3,"брь")="рь|Нояб"
+                    </p>
+                <a id="gettagnum"></a><h4>get.tag.num</h4>
+                    
+                    <p>Получает содержимое одиночного тега<a href="#bottom1" id="upping1" class="em_PRIM">[1]</a> из строки.
+                    <p>Порядок вызова функции:</p>
+                    <p class="em_CODE">
+                    <span class="emFUNC">$func</span>(<span class="emTEXT">'get.tag.num'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
+                    <br><span class="emFUNC">func</span>(<span class="emTEXT">'get.tag.num'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
+                    <p>,
+                    где
+                    <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, содержащий тег.
-                <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
-            </p>
-            <p>Результатом может быть только текстовое значение.</p>
-            <p>Примеры двойных тегов с корнем <span class="emFOLD">tag</span>:</p>
-            <p class="em_CODE">
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
+                    </p>
+                    <p>Результатом может быть текстовое или числовое значение.</p>
+                    <p>Примеры одиночных тегов с корнем <span class="emFOLD">tag</span>:</p>
+                    <p class="em_CODE">
+                        <span class="emFOLD">tag</span><span class="emOPRT">:</span><span class="emTEXT">non_space_symbols</span>
+                        <br><span class="emOPRT"><span class="emFOLD">tag</span>=#<span class="emTEXT">non_space_symbols</span></span>
+                        <br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>&gt;</span>
+                        <br><span class="emOPRT">[<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>]</span>
+                        <br><span class="emOPRT">{<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>}</span>
+                        <br><span class="emOPRT">(<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>)</span>
+                        <br><span class="emOPRT"><span class="emFOLD">tag</span>="<span class="emTEXT">any symbols</span>"</span>
+                        <br><span class="emOPRT"><span class="emFOLD">tag</span>='<span class="emTEXT">any symbols</span>'</span>
+                    </p>
+                    <p>Первые два типа записей не должны содержать пробельных символов, остальные - могут. Тем не менее не рекомендуется использовать данную функцию для извлечения данных с пробельными символами.</p>
+                    <h5>Результат работы функции:</h5>
+                    <p>Заготовленная строка:</p>
+                    <p class="em_CODE">
+                        $text=<span class="emTEXT">"[count:текст с пробелом] &lt;cord:68&gt; log:непробельные_символы color=#ff8899 tag='многа букав'"</span>
+                    </p>
+                    <p>Извлечённые значения:</p>
+                    <p class="em_CODE">
+                        $func('get.tag.num',$text,'count')="<span class="emTEXT">текст с пробелом</span>"
+                        <br>func('get.tag.num',$text,'cord')=<span class="emNUM">68</span>
+                        <br>$func('get.tag.num',$text,'log')="<span class="emTEXT">непробельные_символы</span>"
+                        <br>$func('get.tag.num',$text,'color')="<span class="emTEXT">ff8899</span>"
+                        <br>$func('get.tag.num',$text,'tag')="<span class="emTEXT">многа букав</span>"
+                    </p>
+                <a id="gettagcont"></a><h4>get.tag.cont</h4>
+                
+                    <p>Получает содержимое двойного тега из строки.</p>
+                    <p>Пример вызова функции:</p>
+                    <p class="em_CODE">
+                    <span class="emFUNC">$func</span>(<span class="emTEXT">'get.tag.cont'</span>,<span class="emVAR">$args[<span class="emNUM">0</span>]</span>,<span class="emVAR">$args[<span class="emNUM">1</span>]</span>)
+                    <p>,
+                    где
+                    <p class="em_CODE">
+                    <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - текст, содержащий тег.
+                    <br><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - корень тега.
+                    </p>
+                    <p>Результатом может быть только текстовое значение.</p>
+                    <p>Примеры двойных тегов с корнем <span class="emFOLD">tag</span>:</p>
+                    <p class="em_CODE">
                     &nbsp;<span class="emOPRT"><span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span></span>
-                <br><span class="emOPRT">[<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>]</span>
-                <br><span class="emOPRT">(<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>)</span>
-                <br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>&gt;</span>
-                <br><span class="emOPRT">[<span class="emFOLD">tag</span>]<span class="emTEXT">any symbols</span>[/<span class="emFOLD">tag</span>]</span>
-                <br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>&gt;<span class="emTEXT">any symbols</span>&lt;/<span class="emFOLD">tag</span>&gt;</span>
-            </p>
-            <h5>Результат работы функции:</h5>
-            <p>Заготовленная строка:</p>
-            <p class="em_CODE">$text=<span class="emTEXT">"[count:текст с пробелом:count] &lt;cord:странный и непонятный текст:cord&gt; log:п р о б е л ь н ы е  и  непробельные  символы:log &lt;color&gt;ff8899&lt;/color&gt; [tag]многа букав[/tag]"</span></p>
-            <p>Извлечённые значения:</p>
-            <p class="em_CODE">
-                $func('get.tag.cont',$text,'count')="<span class="emTEXT">текст с пробелом</span>"
-                <br>$func('get.tag.cont',$text,'cord')="<span class="emTEXT">странный и непонятный текст</span>"
-                <br>$func('get.tag.cont',$text,'log')="<span class="emTEXT">п р о б е л ь н ы е и непробельные символы</span>"
-                <br>$func('get.tag.cont',$text,'color')="<span class="emTEXT">ff8899</span>"
-                <br>$func('get.tag.cont',$text,'tag')="<span class="emTEXT">многа букав</span>"
-            </p>
-        <a id="killvarolegus"></a><h4>kill.var.olegus</h4>
-            <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-            <p>Процедура, идею которой на форуме QSP изложил Olegus. Удаляет элемент массива по текстовому индексу. Работает как с текстовыми, так и с числовыми массивами.</p>
-            <p class="em_CODE">
+                    <br><span class="emOPRT">[<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>]</span>
+                    <br><span class="emOPRT">(<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>)</span>
+                    <br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>:<span class="emTEXT">any symbols</span>:<span class="emFOLD">tag</span>&gt;</span>
+                    <br><span class="emOPRT">[<span class="emFOLD">tag</span>]<span class="emTEXT">any symbols</span>[/<span class="emFOLD">tag</span>]</span>
+                    <br><span class="emOPRT">&lt;<span class="emFOLD">tag</span>&gt;<span class="emTEXT">any symbols</span>&lt;/<span class="emFOLD">tag</span>&gt;</span>
+                    </p>
+                    <h5>Результат работы функции:</h5>
+                    <p>Заготовленная строка:</p>
+                    <p class="em_CODE">$text=<span class="emTEXT">"[count:текст с пробелом:count] &lt;cord:странный и непонятный текст:cord&gt; log:п р о б е л ь н ы е и непробельные символы:log &lt;color&gt;ff8899&lt;/color&gt; [tag]многа букав[/tag]"</span></p>
+                    <p>Извлечённые значения:</p>
+                    <p class="em_CODE">
+                    $func('get.tag.cont',$text,'count')="<span class="emTEXT">текст с пробелом</span>"
+                    <br>$func('get.tag.cont',$text,'cord')="<span class="emTEXT">странный и непонятный текст</span>"
+                    <br>$func('get.tag.cont',$text,'log')="<span class="emTEXT">п р о б е л ь н ы е и непробельные символы</span>"
+                    <br>$func('get.tag.cont',$text,'color')="<span class="emTEXT">ff8899</span>"
+                    <br>$func('get.tag.cont',$text,'tag')="<span class="emTEXT">многа букав</span>"
+                    </p>
+                <a id="killvarolegus"></a><h4>kill.var.olegus</h4>
+                    
+                    <p>Процедура, идею которой на форуме QSP изложил Olegus. Удаляет элемент массива по текстовому индексу. Работает как с текстовыми, так и с числовыми массивами.</p>
+                    <p class="em_CODE">
                     <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя массива.
-                <br><span class="emVAR">$args[<span class="emNUM">1 ... 8</span>]</span> - текстовые индексы. Процедура позволяет удалять одновременно до восьми элементов массива.
-            </p>
-            <h5>Результат работы процедуры:</h5>
-            <p class="em_CODE">
+                    <br><span class="emVAR">$args[<span class="emNUM">1 ... 8</span>]</span> - текстовые индексы. Процедура позволяет удалять одновременно до восьми элементов массива.
+                    </p>
+                    <h5>Результат работы процедуры:</h5>
+                    <p class="em_CODE">
                     $a['text']='56'
-                <br>$a['for']='112'
-                <br>$a['of']='9432'
-                <br>
-                <br>gosub 'kill.var.olegus','$a','for'
-                <br>
-                <br>$a['text']='56'
-                <br>$a['for']=''
-                <br>$a['of']='9432'
-            </p>
-        <a id="emmaxvar"></a><h4>em.maxVar</h4>
-            <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-            <p>Возвращает название переменной, содержащей максимальное значение.</p>
-            <p class="em_CODE">
-                <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
-                <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
-            </p>
-            <p>Пример:</p>
-            <p class="em_CODE">
-                $func('em.maxVar','old_mass','new_mass','mass[23]','mass[45]')
-            </p>
-            <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
-            <p class="em_CODE">
-                $func('em.maxVar','old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')
-            </p>
-            <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
-            <p>Если нужно провести поиск максимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
-            <p class="em_CODE">
-                $func('em.maxVar','old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')
-            </p>
-            <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
-            <p>Список управляющих конструкций:</p>
-            <ul>
-                <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих максимальное значение, если это значение присутствует во всех этих переменных.</li>
-                <li><span class="emTEXT">[max]</span> - в этом режиме функция производит поиск максимального значения. Режим по умолчанию, т.е. можно не указывать.</li>
-                <li><span class="emTEXT">[min]</span> - в этом режиме функция производит поиск минимального значения. Имеет приоритет над <span class="emTEXT">[max]</span>, если указаны оба.</li>
-            </ul>
-            <p class="em_CODE">
-                $func('em.maxVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
-            </p>
-            <h5>Результат работы функции:</h5>
-            <p class="em_CODE">
-                 old_mass[0]=788
-            <br/>old_mass[1]=136
-            <br/>old_mass[2]=788
-            <br/>old_mass[3]=177
-            <br/>old_mass[4]=75
-            <br/>old_mass[5]=97
-            <br/>old_mass[6]=649
-            <br/>old_mass[7]=75
-                <br/>
-            <br/>$func('em.maxVar','old_mass/arr')
-            <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[0]'</span>
-            <br/>$func('em.maxVar','old_mass/arr','[list]')
-            <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[0]
-            <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[2]'</span>
-            <br/>$func('em.maxVar','old_mass/arr','[list][min]')
-            <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
-            <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
-            </p>
-            <p>Скорость работы функции 4 мс на 100 000 значений. Или 4 секунды на 10 000 000 значений. </p>
-        <a id="emminvar"></a><h4>em.minVar</h4>
-            <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-            <p>Возвращает название переменной, содержащей минимальное значение.</p>
-            <p class="em_CODE">
-                <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
-                <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
-            </p>
-            <p> Пример:</p>
-            <p class="em_CODE">
-                $func('em.minVar','old_mass','new_mass','mass[23]','mass[45]')
-            </p>
-            <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
-            <p class="em_CODE">
-                $func('em.minVar','old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')
-            </p>
-            <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
-            <p>Если нужно провести поиск минимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
-            <p class="em_CODE">
-                $func('em.minVar','old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')
-            </p>
-            <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
-            <p>Список управляющих конструкций:</p>
-            <ul>
-                <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих минимальное значение, если это значение присутствует во всех этих переменных.</li>
-            </ul>
-            <p class="em_CODE">
-                $func('em.minVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
-            </p>
-            <h5>Результат работы функции:</h5>
-            <p class="em_CODE">
-                old_mass[0]=788
-            <br/>old_mass[1]=136
-            <br/>old_mass[2]=788
-            <br/>old_mass[3]=177
-            <br/>old_mass[4]=75
-            <br/>old_mass[5]=97
-            <br/>old_mass[6]=649
-            <br/>old_mass[7]=75
-                <br/>
-            <br/>$func('em.minVar','old_mass/arr')
-            <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]'</span>
-            <br/>$func('em.minVar','old_mass/arr','[list]')
-            <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
-            <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
-            <br/>$func('em.minVar','old_mass/arr','[list][max]') &amp; ! в данном случае поиск максимального работать не будет!!!
-            <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
-            <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
-            </p>
-            <p>Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
-        <a id="emvargettype"></a><h4>em.var.getType</h4>
-            <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-            <p>Функция получает тип переменной.</p>
-            <div class="em_CODE">
-                <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя переменной/массива. Можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива.
-                <br/><span class="emVAR">$result</span> - в результате функция возвращает строку:
-                <ul>
-                <li>
-                    <span class="emTEXT">'both'</span> - этот результат означает, что существуют как текстовое, так и числовое значение для указанной переменной. В плеерах версии 5.7.0 и ниже в одном массиве под одним и тем же индексом можно хранить как текстовое так и числовое значение. Например:
+                    <br>$a['for']='112'
+                    <br>$a['of']='9432'
+                    <br>
+                    <br>gosub 'kill.var.olegus','$a','for'
+                    <br>
+                    <br>$a['text']='56'
+                    <br>$a['for']=''
+                    <br>$a['of']='9432'
+                    </p>
+                <a id="emmaxvar"></a><h4>em.maxVar</h4>
+                    
+                    <p>Возвращает название переменной, содержащей максимальное значение.</p>
+                    <p class="em_CODE">
+                        <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
+                        <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
+                    </p>
+                    <p>Пример:</p>
+                    <p class="em_CODE">
+                        $func('em.maxVar','old_mass','new_mass','mass[23]','mass[45]')
+                    </p>
+                    <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
+                    <p class="em_CODE">
+                        $func('em.maxVar','old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')
+                    </p>
+                    <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
+                    <p>Если нужно провести поиск максимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
+                    <p class="em_CODE">
+                        $func('em.maxVar','old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')
+                    </p>
+                    <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
+                    <p>Список управляющих конструкций:</p>
+                    <ul>
+                        <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих максимальное значение, если это значение присутствует во всех этих переменных.</li>
+                        <li><span class="emTEXT">[max]</span> - в этом режиме функция производит поиск максимального значения. Режим по умолчанию, т.е. можно не указывать.</li>
+                        <li><span class="emTEXT">[min]</span> - в этом режиме функция производит поиск минимального значения. Имеет приоритет над <span class="emTEXT">[max]</span>, если указаны оба.</li>
+                    </ul>
+                    <p class="em_CODE">
+                        $func('em.maxVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
+                    </p>
+                    <h5>Результат работы функции:</h5>
+                    <p class="em_CODE">
+                         old_mass[0]=788
+                    <br/>old_mass[1]=136
+                    <br/>old_mass[2]=788
+                    <br/>old_mass[3]=177
+                    <br/>old_mass[4]=75
+                    <br/>old_mass[5]=97
+                    <br/>old_mass[6]=649
+                    <br/>old_mass[7]=75
+                        <br/>
+                    <br/>$func('em.maxVar','old_mass/arr')
+                    <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[0]'</span>
+                    <br/>$func('em.maxVar','old_mass/arr','[list]')
+                    <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[0]
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[2]'</span>
+                    <br/>$func('em.maxVar','old_mass/arr','[list][min]')
+                    <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
+                    </p>
+                    <p>Скорость работы функции 4 мс на 100 000 значений. Или 4 секунды на 10 000 000 значений. </p>
+                <a id="emminvar"></a><h4>em.minVar</h4>
+                    
+                    <p>Возвращает название переменной, содержащей минимальное значение.</p>
+                    <p class="em_CODE">
+                        <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имена переменных, или точные указания на ячейки массивов, перечисленные списком через запятую
+                        <span class="emVAR">$args[<span class="emNUM">1</span>]</span> ... <span class="emVAR">$args[<span class="emNUM">8</span>]</span> - каждый аргумент — отдельное имя переменной, или указание на конкретную ячейку массива, либо управляющая конструкция.
+                    </p>
+                    <p> Пример:</p>
+                    <p class="em_CODE">
+                        $func('em.minVar','old_mass','new_mass','mass[23]','mass[45]')
+                    </p>
+                    <p>В <span class="emVAR">$args[<span class="emNUM">0</span>]</span> может быть не одно, а несколько имён переменных или конкретных ячеек массива, разделённых запятыми:</p>
+                    <p class="em_CODE">
+                        $func('em.minVar','old_mass_1,oldmass,old_mass_2,oldold[1],oldold[13],oldold["textindex"]','new_mass','mass[23]','mass[45]')
+                    </p>
+                    <p>При указании текстовых индексов для элементов массива в таком списке недопустимо, чтобы в этих текстовых индексах присутствовали запятые. Для указания таких ячеек массива используйте аргументы с <span class="emVAR">$args[<span class="emNUM">1</span>]</span> по <span class="emVAR">$args[<span class="emNUM">8</span>]</span>, либо замените в индексах запятые на <span class="emTEXT">%&amp;#44;%</span>.</p>
+                    <p>Если нужно провести поиск минимального среди всех значений массива, можно использовать ключ <span class="emTEXT">/arr</span>, чтобы указать, что данное имя является не просто именем переменной (то есть нулевой ячейки массива), но и всего массива.</p>
+                    <p class="em_CODE">
+                        $func('em.minVar','old_mass_1,oldmass,old_mass_2,oldold/arr','new_mass/arr','mass[23]','mass[45]')
+                    </p>
+                    <p>В последнем аргументе (номер аргумента при этом не важен) можно использовать управляющие конструкции. Аргументы после аргумента с управляющими конструкциями будут проигнорированы.</p>
+                    <p>Список управляющих конструкций:</p>
+                    <ul>
+                        <li><span class="emTEXT">[list]</span> - в этом режиме функция возвращает список всех имён переменных, содержащих минимальное значение, если это значение присутствует во всех этих переменных.</li>
+                    </ul>
+                    <p class="em_CODE">
+                        $func('em.minVar','oldold/arr,new_mass/arr','mass[23]','[list]','mass[45]')
+                    </p>
+                    <h5>Результат работы функции:</h5>
+                    <p class="em_CODE">
+                        old_mass[0]=788
+                    <br/>old_mass[1]=136
+                    <br/>old_mass[2]=788
+                    <br/>old_mass[3]=177
+                    <br/>old_mass[4]=75
+                    <br/>old_mass[5]=97
+                    <br/>old_mass[6]=649
+                    <br/>old_mass[7]=75
+                        <br/>
+                    <br/>$func('em.minVar','old_mass/arr')
+                    <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]'</span>
+                    <br/>$func('em.minVar','old_mass/arr','[list]')
+                    <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
+                    <br/>$func('em.minVar','old_mass/arr','[list][max]') &amp; ! в данном случае поиск максимального работать не будет!!!
+                    <br/><span class="emCOMM">!&nbsp;&nbsp;'old_mass[4]
+                    <br/>&nbsp;&nbsp;&nbsp;&nbsp;old_mass[7]'</span>
+                    </p>
+                    <p>Данная функция является надстройкой над функцией <span class="emTEXT">em.maxVar</span>.</p>
+                <a id="emvargettype"></a><h4>em.var.getType</h4>
+                    
+                    <p>Функция получает тип переменной.</p>
                     <div class="em_CODE">
-                        $varname[1]='text' &amp; varname[1]=234
+                        <span class="emVAR">$args[<span class="emNUM">0</span>]</span> - имя переменной/массива. Можно указывать название непосредственно переменной/массива, или конкретную ячейку масссива.
+                        <br/><span class="emVAR">$result</span> - в результате функция возвращает строку:
+                        <ul>
+                        <li>
+                            <span class="emTEXT">'both'</span> - этот результат означает, что существуют как текстовое, так и числовое значение для указанной переменной. В плеерах версии 5.7.0 и ниже в одном массиве под одним и тем же индексом можно хранить как текстовое так и числовое значение. Например:
+                            <div class="em_CODE">
+                                $varname[1]='text' &amp; varname[1]=234
+                            </div>
+                            В этом случае функция вернёт строку <span class="emTEXT">'both'</span>
+                        </li>
+                        <li><span class="emTEXT">'string'</span> - этот результат означает, что переменная содержит только текстовое значение отличное от значения переменной по умолчанию.</li>
+                        <li><span class="emTEXT">'number'</span> - этот результат означает, что переменная содержит только числовое значение отличное от значения переменной по умолчнаию.</li>
+                        <li><span class="emTEXT">'empty'</span> - этот результат означает, что переменная не создана, либо содержит значение по умолчанию, текстовое и числовое.</li>
+                    </ul>
                     </div>
-                    В этом случае функция вернёт строку <span class="emTEXT">'both'</span>
-                </li>
-                <li><span class="emTEXT">'string'</span> - этот результат означает, что переменная содержит только текстовое значение отличное от значения переменной по умолчанию.</li>
-                <li><span class="emTEXT">'number'</span> - этот результат означает, что переменная содержит только числовое значение отличное от значения переменной по умолчнаию.</li>
-                <li><span class="emTEXT">'empty'</span> - этот результат означает, что переменная не создана, либо содержит значение по умолчанию, текстовое и числовое.</li>
-            </ul>
+                    <p>Вызов:</p>
+                    <p class="em_CODE">
+                        $func('em.var.getType', '$имя_переменной')
+                        <br/>$func('em.var.getType', 'array["string"]')
+                    </p>
+                    <p>Символ <span class="emTEXT">"$"</span> перед названием переменной при определении типа роли не играет.</p>
+                    <p>Обратите внимание: функция написана для версии плеера 5.7.0 и ниже, поэтому она возвращает результат сообразно принципу работы массивов для плееров версии 5.7.0 и ниже.</p>
+                    <p>Проверить тип локальных переменных с помощью данной функции нельзя.</p>
+                    <h5>Примеры:</h5>
+                    <p class="em_CODE">
+                    $string='text'
+                        <br/>	number=123
+                        <br/>	$varname[0]='text' &amp; varname[0]=123
+                        <br/>	$emptyvar[0]=''
+                        <br/>	emptyvar[1]=0
+                        <br/>	$func('em.var.getType','$string')=<span class="emTEXT">'string'</span>
+                        <br/>	$func('em.var.getType','number')=<span class="emTEXT">'number'</span>
+                        <br/>	$func('em.var.getType','$number')=<span class="emTEXT">'number'</span>
+                        <br/>	$func('em.var.getType','string')=<span class="emTEXT">'string'</span>
+                        <br/>	$func('em.var.getType','$varname')=<span class="emTEXT">'both'</span>
+                        <br/>	$func('em.var.getType','$emptyvar[0]')=<span class="emTEXT">'empty'</span>
+                        <br/>	$func('em.var.getType','emptyvar[1]')=<span class="emTEXT">'empty'</span>
+                    </p>
+                
+                <a id="rergb"></a><h4>#re.rgb#</h4>
+                    
+                    <p>Функция обратная функции rgb, встроенной в QSP. То есть данная функция наоборот: переводит числовой код цвета в три составляющие.</p>
+                    <div class="em_CODE">
+                        <span class="emVAR">args[<span class="emNUM">0</span>]</span> - числовой код цвета.
+                        <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющая конструкция. Указывает, какую составляющую мы хотим получить (можно комбинировать):
+                        <ul>
+                            <li><span class="emTEXT">[red]</span> - красная составляющая,</li>
+                            <li><span class="emTEXT">[green]</span> - зелёная составляющая,</li>
+                            <li><span class="emTEXT">[blue]</span> - синяя составляющая.</li>
+                        </ul>
+                        <span class="emVAR">$res</span><span class="emVAR">ult</span> или <span class="emVAR">res</span><span class="emVAR">ult</span> - функция возвращает все три составляющие в виде строки текста (если указать хотя бы два управляющих слова или не указать ни одного), или возвращает в виде числа одну составляющую (если указать одну управляющую конструкцию).
+                    </div>
+                    <h5>Результат работы функции:</h5>
+                    <div class="em_CODE">
+                        yellow=rgb(255,255,0)
+                        <br/>$func('#re.rgb#', yellow)='255|255|0'
+                        <br/>func('#re.rgb#', yellow, '[red]')=255
+                        <br/>func('#re.rgb#', yellow, '[green]')=255
+                        <br/>func('#re.rgb#', yellow, '[blue]')=0
+                        <br/><br/>
+                        knaki=rgb(240,230,140)
+                        <br/>$func('#re.rgb#', knaki, '[blue][red]')='240|230|140'
+                        <br/>func('#re.rgb#', knaki, '[red]')=240
+                        <br/>func('#re.rgb#', knaki, '[green]')=230
+                        <br/>func('#re.rgb#', knaki, '[blue]')=140
+                    </div>
+                <hr>
+                <h4>Примечания:</h4>
+                <p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего тегов. Содержимое тегов - это информация, которую они отмечают, или выделяют.</p>
+                <div><a href="../manual.html">Назад</a></div>
             </div>
-            <p>Вызов:</p>
-            <p class="em_CODE">
-                $func('em.var.getType', '$имя_переменной')
-                <br/>$func('em.var.getType', 'array["string"]')
-            </p>
-            <p>Символ <span class="emTEXT">"$"</span> перед названием переменной при определении типа роли не играет.</p>
-            <p>Обратите внимание: функция написана для версии плеера 5.7.0 и ниже, поэтому она возвращает результат сообразно принципу работы массивов для плееров версии 5.7.0 и ниже.</p>
-            <p>Проверить тип локальных переменных с помощью данной функции нельзя.</p>
-            <h5>Примеры:</h5>
-            <p class="em_CODE">
-            $string='text'
-                <br/>	number=123
-                <br/>	$varname[0]='text' &amp; varname[0]=123
-                <br/>	$emptyvar[0]=''
-                <br/>	emptyvar[1]=0
-                <br/>	$func('em.var.getType','$string')=<span class="emTEXT">'string'</span>
-                <br/>	$func('em.var.getType','number')=<span class="emTEXT">'number'</span>
-                <br/>	$func('em.var.getType','$number')=<span class="emTEXT">'number'</span>
-                <br/>	$func('em.var.getType','string')=<span class="emTEXT">'string'</span>
-                <br/>	$func('em.var.getType','$varname')=<span class="emTEXT">'both'</span>
-                <br/>	$func('em.var.getType','$emptyvar[0]')=<span class="emTEXT">'empty'</span>
-                <br/>	$func('em.var.getType','emptyvar[1]')=<span class="emTEXT">'empty'</span>
-            </p>
-        <a id="rergb"></a><h4>#re.rgb#</h4>
-            <a href="#UP" title="Вверх" class="emHREFNB">&nbsp;&uarr;&nbsp;Наверх&nbsp;</a>
-            <p>Функция обратная функции rgb, встроенной в QSP. То есть данная функция наоборот: переводит числовой код цвета в три составляющие.</p>
-            <div class="em_CODE">
-                <span class="emVAR">args[<span class="emNUM">0</span>]</span> - числовой код цвета.
-                <br/><span class="emVAR">$args[<span class="emNUM">1</span>]</span> - управляющая конструкция. Указывает, какую составляющую мы хотим получить (можно комбинировать):
-                <ul>
-                    <li><span class="emTEXT">[red]</span> - красная составляющая,</li>
-                    <li><span class="emTEXT">[green]</span> - зелёная составляющая,</li>
-                    <li><span class="emTEXT">[blue]</span> - синяя составляющая.</li>
-                </ul>
-                <span class="emVAR">$res</span><span class="emVAR">ult</span> или <span class="emVAR">res</span><span class="emVAR">ult</span> - функция возвращает все три составляющие в виде строки текста (если указать хотя бы два управляющих слова или не указать ни одного), или возвращает в виде числа одну составляющую (если указать одну управляющую конструкцию).
+            <div class="em_Epigraph">
+                <div class="em_subText">
+                    <p>Aleks Versus'Easy Libraries'2013-2021</p>
+                    <p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-2021</p>
+                </div>
             </div>
-            <h5>Результат работы функции:</h5>
-            <div class="em_CODE">
-                yellow=rgb(255,255,0)
-                <br/>$func('#re.rgb#', yellow)='255|255|0'
-                <br/>func('#re.rgb#', yellow, '[red]')=255
-                <br/>func('#re.rgb#', yellow, '[green]')=255
-                <br/>func('#re.rgb#', yellow, '[blue]')=0
-                <br/><br/>
-                knaki=rgb(240,230,140)
-                <br/>$func('#re.rgb#', knaki, '[blue][red]')='240|230|140'
-                <br/>func('#re.rgb#', knaki, '[red]')=240
-                <br/>func('#re.rgb#', knaki, '[green]')=230
-                <br/>func('#re.rgb#', knaki, '[blue]')=140
-            </div>
-        <hr>
-        <h4>Примечания:</h4>
-        <p><a id="bottom1"></a><a href="#upping1" class="em_PRIM" title="Назад">[1]</a> Теги - это метки в тексте, которые отмечают некоторую информацию. В контексте данного руководства и связанных с библиотекой программ различаются одиночные и двойные теги. Одиночные теги отличаются тем, что не требуют закрытия. Двойные теги состоят из открывающего и закрывающего тегов. Содержимое тегов - это информация, которую они отмечают, или выделяют.</p>
-		<div><a href="../manual.html">Назад</a></div>
-	</div>
-	<div class="em_Epigraph">
-		<div class="em_subText">
-			<p>Aleks Versus'Easy Libraries'2019</p>
-			<p>Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2019</p>
-		</div>
-	</div>
-</div>
+            <div class="stickUP"><a href="#UP" title="Вверх"><img src="../../res/img/uparrow_btn.png"></a></div>
+        </div>
 </body>
 </html>

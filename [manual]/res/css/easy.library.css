@@ -83,14 +83,21 @@ a.emHREFTT {
 }
 a.emHREFHH {text-decoration:none; color:#884400;}
 a.emHREFTT:hover {background-color:#ffffff9f;}
-.emFUNC, .emOPRT, .emFOLD, .emTEXT, .emVAR, .emNUM, .emARR, .emCOMM, .em_MARKER {font-weight:bold;font-family:monospace;}
+.emFUNC, .emOPRT, .emFOLD, .emTEXT, .emVAR, .emNUM, .emARR, .emCOMM, .em_MARKER, .emGS {font-weight:bold;font-family:monospace;}
 .emFUNC {color:#ff8800;} /*цвет выделения функций*/
 .emOPRT {color:#008899;} /*цвет выделения операторов*/
 .emFOLD {color:#000000;background:#F6F6BC;} /*цвет выделения папок*/
+.emGS {
+    color:#2a79aa;
+    background:#e2e2e2;
+    border-radius: 0.1em;
+    padding:0 0.2em;
+    box-shadow: 0.01em 0.01em 0.2em 0.01em rgba(0,0,0,0.75);
+} /*цвет выделения пользовательских процедур и функций*/
 .emTEXT {color:#008800;} /*цвет выделения текстовых значений*/
 .emVAR {color:#aa0000;}
 .emNUM {color:#880088;font-size:1.2em;}
-.emARR {color:#444400;}
+.emARR {color:#5c5c00;}
 .emCOMM {color:#888888;}
 .em_MARKER {color:#999900;}
 
@@ -102,6 +109,12 @@ a.emHREFTT:hover {background-color:#ffffff9f;}
 .em_BLCK {color:#000000;}
 
 .emTEXT > .emTEXT {
+ color:#004400;
+}
+.emTEXT > .emVAR {
+ color:#440000;
+}
+.emTEXT > .emVAR > .emTEXT {
  color:#004400;
 }
 .emVAR > .emNUM {
@@ -149,6 +162,7 @@ p.em_PF{
  text-indent: 0;
 }
 td > p.em_PF {border:0;}
+.em_PF.em_CODE {border-color:black;}
 .em_STEP {
  margin:0 0 0 1.5em;
  padding:0;
