@@ -1,3 +1,4 @@
+QSP-Game стартовая локация для теста библиотеки easy.math.
 # !easy.math!
 if $args[0]="":
 	showobjs 0
@@ -29,3 +30,10 @@ elseif $args[0]='version':
 	result=2314
 end
 --- !easy.math! ---------------------------------
+!@pp:if(build_easy_math==Off):nopp
+Функции работы с шестнадцатеричными значениями
+!@pp:var(em_hex_dec)
+!@pp:var(em_dec_hex)
+!@pp:var(em_dec_col)
+
+!@pp:endif
