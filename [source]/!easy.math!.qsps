@@ -38,5 +38,6 @@ end
 !@pp:var(em_hex_dec)
 !@pp:var(em_dec_hex)
 !@pp:var(em_dec_col)
+!@pp:var(em_col_rgb)
 
 !@pp:endif
