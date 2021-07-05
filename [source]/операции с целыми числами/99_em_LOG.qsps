@@ -3,7 +3,8 @@ args[0] - число
 args[1] - основание
 result - максимально близкая к этому числу и по основанию степень
 !@pp:if(em_log):include
-# em.LOG
+# em.log
+args[9]=args[9]
 args['base']=1
 result=0
 :for
@@ -12,5 +13,5 @@ if no (args[0]/args['base']<args[1]):
 	result+=1
 	jump 'for'
 end
-- em.LOG
+- em.log
 !@pp:endif
