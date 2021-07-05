@@ -1,35 +1,49 @@
 QSP-Game Функция, конвертирующая десятеричное число в шестнадцатеричное (см ниже)
-$args[0] — шестнадцатеричное число
-result - десятеричное число
+args[0] - число целое, десятеричное.
+$result - шестнадцатеричное двуразрядное число (текстовое значение).
 !@pp:if(em_dec_col):include
 # #dec-col#
 if args[0]>16777215 or args[0]<-16777215: jump 'end_keep'
 $result=''
 if args[0]<0: args[0]=-args[0] & $args['+']='-'
-args['основание']=16
-:новое_основание
-if args[0]/args['основание']<16:
-	if args[0]<16:
-		$result=$result+$mid('0123456789abcdef',args[0]+1,1)
-		jump 'end_keep'
-	else
-		$result=$result+$mid('0123456789abcdef',args[0]/args['основание']+1,1)
-		args[0]=args[0] mod args['основание']
-		args['основание']=16
-		jump 'новое_основание'
-	end
+!@ генерируем последнее основание и номер последнего разряда:
+args['base']=1
+args['j']=0
+:last_base
+if no (args[0]/args['base']<16):
+	args['base']=args['base']*16
+	args['j']+=1
+	jump 'last_base'
+end
+:new_base
+!@ если само число меньше 16
+if args['j']=0:
+	$result+=$mid('0123456789abcdef',args[0]+1,1)	& !@ получаем символ числа (hex-цифру)
+	jump 'end_keep'
 else
-	args['основание']=args['основание']*16
-	jump 'новое_основание'
+	args['hn']=args[0]/args['base']
+	$result+=$mid('0123456789abcdef',args['hn']+1,1)	& !@ получаем hex-цифру
+	args[0]=args[0] mod args['base']	& !@ числом становится остаток от деления на основание
+	args['j']-=1
+	!@ --- получение нового основания. Можно заменить на функцию #^# (em.EXP)
+		args['base']=1
+		args['i']=args['j']
+		:for
+		if args['i']>0: 
+			args['base']=args['base']*16
+			args['i']-=1
+			jump 'for'
+		end
+	!@ ------------------------- получение нового основания -----------------
+	jump 'new_base'
 end
 :end_keep
 if len($result)=1:
 	$result='0'+$result
 elseif $result='':
 	$result='00'
-else
-	$result=$args['+']+$result
 end
+$result=$args['+']+$result
 --- #dec-col# ---------------------------------
 !@pp:endif
 
