@@ -7,6 +7,7 @@ if args[0]>16777215 or args[0]<-16777215: jump 'end_keep'
 $result=''
 if args[0]<0: args[0]=-args[0] & $args['+']='-'
 !@ генерируем последнее основание и номер последнего разряда:
+!@ можно заменить на em.LOG
 args['base']=1
 args['j']=0
 :last_base
