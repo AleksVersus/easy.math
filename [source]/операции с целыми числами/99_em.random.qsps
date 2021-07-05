@@ -10,7 +10,6 @@ if strcomp($args[args['i']],'\d+\-\d+')<>0:
 	!@ получение чисел. Можно использовать функцию get.word.inPos
 	args['j']=val($strfind($args[args['i']],'(\d+)(\-)',1))
 	args['2']=val($strfind($args[args['i']],'(\-)(\d+)',2))
-	*pl "<<args['j']>>:<<args['2']>>"
 	:for_j
 	if args['j']<=args['2']:
 		if arrpos('easy_math_temp',args['j'])=-1:
