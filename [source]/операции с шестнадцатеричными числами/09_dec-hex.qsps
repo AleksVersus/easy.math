@@ -3,24 +3,39 @@ args[0] — десятеричное число
 $result - шестнадцатеричное число
 !@pp:if(em_dec_hex):include
 # #dec-hex#
-args[9]=args[9]
+args[9]=args[9] & !@ инициализация аргументов
 $result=''
-if args[0]<0: args[0]=-args[0] & $args['+']='-'
-args['основание']=16
-:новое_основание
-if args[0]/args['основание']<16:
-	if args[0]<16:
-		$result=$result+$mid('0123456789abcdef',args[0]+1,1)
-		jump 'end_keep'
-	else
-		$result=$result+$mid('0123456789abcdef',args[0]/args['основание']+1,1)
-		args[0]=args[0] mod args['основание']
-		args['основание']=16
-		jump 'новое_основание'
-	end
+if args[0]<0: args[0]=-args[0] & $args['+']='-'	& !@ поддержка отрицательных чисел
+!@ генерируем последнее основание и номер последнего разряда:
+args['base']=1
+args['j']=0
+:last_base
+if no (args[0]/args['base']<16):
+	args['base']=args['base']*16
+	args['j']+=1
+	jump 'last_base'
+end
+:new_base
+!@ если само число меньше 16
+if args['j']=0:
+	$result+=$mid('0123456789abcdef',args[0]+1,1)	& !@ получаем символ числа (hex-цифру)
+	jump 'end_keep'
 else
-	args['основание']=args['основание']*16
-	jump 'новое_основание'
+	args['hn']=args[0]/args['base']
+	$result+=$mid('0123456789abcdef',args['hn']+1,1)	& !@ получаем hex-цифру
+	args[0]=args[0] mod args['base']	& !@ числом становится остаток от деления на основание
+	args['j']-=1
+	!@ --- получение нового основания. Можно заменить на функцию #^# (em.EXP)
+		args['base']=1
+		args['i']=args['j']
+		:for
+		if args['i']>0: 
+			args['base']=args['base']*16
+			args['i']-=1
+			jump 'for'
+		end
+	!@ ------------------------- получение нового основания -----------------
+	jump 'new_base'
 end
 :end_keep
 $result=$args['+']+$result
