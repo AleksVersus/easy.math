@@ -1,7 +1,7 @@
 QSP-GAME изменяет тип содержимого массива. То есть меняется тип каждой отдельной ячейки.
 $args[0] - название массива, для которого требуется поменять тип. Можно указывать как с символом '$', так и без него перед именем.
 $args[1] - управление:
-	[string] - все ячейки массива приводятся к строковому типу;
+	[string] - все ячейки массива приводятся к строковому типу (по умолчанию);
 	[number] - все ячейки массива приводятся к числовому типу;
 	[reverse] - тип ячеек меняется на противоположный (не знаю, кому это может понадобиться);
 	[hard] - режим, расширяющий работу режима [string], при этом ячейкам, тип которых определяется как 'empty' (см. функцию "em.var.getType"), принудительно присваивается строковое значение "0".
@@ -27,7 +27,22 @@ args['i']=0
 args['s']=arrsize($args[0])
 :for_reverse
 if args['i']<args['s']:
-	$args['t']=$func('em.var.getType','<<$args[0]>>[<<args["i"]>>]')
+	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
+		$args['var.getType']='<<$args[0]>>[<<args["i"]>>]' & !@ имя переменной с $ иили без не важно
+		if instr($args['var.getType'], '$')=1: $args['var.getType']=$mid($args['var.getType'],2)
+		args['string.gt']=dyneval("if $<<$args['var.getType']>><>'': result=1 else result=0")
+		args['number.gt']=dyneval("if <<$args['var.getType']>><>0: result=1 else result=0")
+		if args['string.gt']=1 and args['number.gt']=1:
+			$args['result.gt']='both' & !@ в переменной содержатся оба типа данных. По сути это ошибка
+		elseif args['string.gt']=1 and args['number.gt']=0:
+			$args['result.gt']='string' & !@ переменная содержит текстовое значение
+		elseif args['string.gt']=0 and args['number.gt']=1:
+			$args['result.gt']='number' & !@ переменная содержит числовое значение
+		elseif args['string.gt']=0 and args['number.gt']=0:
+			$args['result.gt']='empty' & !@ переменная не содержит значений, либо содержит значения по-умолчанию
+		end
+		$args['t']=$args['result.gt']
+	!@ ------------------------- данный блок кода можно заменить на em.var.getType ------------------------
 	!@ преобразуем в строковый
 	if $args['type']='string' and ($args['t']='string' or $args['t']='empty' or $args['t']='both'): $args['dyn']='StrInStr'
 	if $args['type']='string' and $args['t']='number': $args['dyn']='NumInStr'
@@ -62,8 +77,4 @@ killvar 'easy_math_temp'
 --- em.arr.chType ---------------------------------
 !@pp:endif
 
-Используется функция em.var.getType
-
-!@pp:if(em_arr_chtype!=True):nopp
-!@pp:var(em_var_gettype)
-!@pp:endif
+Функция не использует иных функций библиотеки
