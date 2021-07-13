@@ -92,10 +92,13 @@ else
 			end
 		end
 	end
-
 end
 $result=$func('#dz#',$result)
 --- #sim# ---------------------------------
 !@pp:endif
 
 Функция использует функции библиотеки #dz# и #zero#
+!@pp:if(em_sim!=True):nopp
+!@pp:var(em_dz)
+!@pp:var(em_zstr)
+!@pp:endif
