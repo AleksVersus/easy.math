@@ -43,9 +43,9 @@ else
 		exit
 	else
 		!@ сравнение за счёт знаков не удалось, сравниваем по частям
-		$args['int_0']=$mid($args[0],1,instr($args[0],'.')-1)
+		$args['int_0']=$mid($args['number_0'],1,instr($args['number_0'],'.')-1)
 		args['len_0']=len($args['int_0'])
-		$args['int_1']=$mid($args[1],1,instr($args[1],'.')-1)
+		$args['int_1']=$mid($args['number_1'],1,instr($args['number_1'],'.')-1)
 		args['len_1']=len($args['int_1'])
 		!@ нужно сравнить целые числа, доводим их до одинаковой длины
 		if args['len_0']>args['len_1']:
@@ -58,8 +58,8 @@ else
 		!@ сравниваем числа
 		if $args['int_1']=$args['int_0']:
 			!@ если целые части равны, сравниваем дробные части
-			$args['float_0']=$mid($args[0],instr($args[0],'.')+1)
-			$args['float_1']=$mid($args[1],instr($args[1],'.')+1)
+			$args['float_0']=$mid($args['number_0'],instr($args['number_0'],'.')+1)
+			$args['float_1']=$mid($args['number_1'],instr($args['number_1'],'.')+1)
 			!@ 
 			if $max($args['float_1'],$args['float_0'])=$args['float_1']:
 				!@ если второе число больше первого
