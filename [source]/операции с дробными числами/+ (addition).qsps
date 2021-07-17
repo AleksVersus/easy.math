@@ -3,59 +3,77 @@ $args[0] ... $args[8] - девять слагаемых. Могут быть п�
 $result - всегда текстовое значение.
 !@pp:if(em_addition):include
 # #+#
-$args[9]=$args[9]
-i_easy_math_plus=0
+$args[9]=$args[9]	& !@ инициализация аргументов
+!@ инициализация чисел
+args['i']=0
+args['b']=-1
 :initial
-if i_easy_math_plus<9:
-	if $args[i_easy_math_plus]='': $args[i_easy_math_plus]=$str(args[i_easy_math_plus]) else $args[i_easy_math_plus]=$args[i_easy_math_plus]
-	if instr($args[i_easy_math_plus],'-')=1: $args[i_easy_math_plus]=$replace($args[i_easy_math_plus],'-') & minus_easy_math_plus[i_easy_math_plus]=1
-	if instr($args[i_easy_math_plus],'.')=0: $args[i_easy_math_plus]+='.0'
-	if len($mid($args[i_easy_math_plus],instr($args[i_easy_math_plus],'.')+1))>len_easy_math_plus['pos']: len_easy_math_plus['pos']=len($mid($args[i_easy_math_plus],instr($args[i_easy_math_plus],'.')+1))
-	i_easy_math_plus+=1
+if args['i']<9:
+	if $args[args['i']]='' and args[args['i']]<>0:
+		!@ если передана не строка, а число, переводим число в строку
+		$args[args['i']]=$str(args[args['i']])
+	end
+	if $args[args['i']]<>'' and $strfind($args[args['i']],'^0+(\.0+)?$')='':
+		args['b']+=1	& !@ счётчик найденных чисел
+		!@ если передана строка, и дробное число в ней не равно нулю
+		if instr($args[args['i']],'-')=1:
+			!@ если в чииле есть знак минус, помечаем число минусом
+			$args["+<<args['b']>>"]='-'
+			$args[args['i']]=$mid($args[args['i']],2)
+		else
+			$args["+<<args['b']>>"]=''
+			$args[args['i']]=$args[args['i']]
+		end
+		!@ если в числе есть точка, разделяем число на целую и дробную часть
+		if instr($args[args['i']],'.')<>0:
+			$args["int_<<args['b']>>"]=$mid($args[args['i']],1,instr($args[args['i']],'.')-1)
+			$args["float_<<args['b']>>"]=$mid($args[args['i']],instr($args[args['i']],'.')+1)
+		else
+			$args["int_<<args['b']>>"]=$args[args['i']]
+			$args["float_<<args['b']>>"]='0'
+		end
+		!@ если длина числа больше максимальной, записываем в максимальные эту длину
+		if len($args["int_<<args['b']>>"])>args['int_size']: args['int_size']=len($args["int_<<args['b']>>"])
+		if len($args["float_<<args['b']>>"])>args['float_size']: args['float_size']=len($args["float_<<args['b']>>"])
+	end
+	args['i']+=1
 	jump 'initial'
 end
-i_easy_math_plus=0
+!@ увеличиваем число разрядов в числе, чтобы избежать различных эксцессов
+args['int_size']+=2
+args['float_size']+=2
+!@ следующий цикл приводит число к целому для сложения с переполнением
+args['i']=0
+$args['dev']=$func('#zero#',args['int_size'],args['float_size'],'9')
 :к_целому
-if i_easy_math_plus<9:
-	$args[i_easy_math_plus]=$replace($args[i_easy_math_plus]+$func('#zero#',len_easy_math_plus['pos']-len($mid($args[i_easy_math_plus],instr($args[i_easy_math_plus],'.')+1))),'.')
-	i_easy_math_plus+=1
+if args['i']<=args['b']:
+	$args["number_<<args['i']>>"]=$func('#zero#',args['int_size']-len($args["int_<<args['i']>>"]))+$args["int_<<args['i']>>"]+$args["float_<<args['i']>>"]+$func('#zero#',args['float_size']-len($args["float_<<args['i']>>"]))
+	if $args["+<<args['i']>>"]='-':
+		$args["number_<<args['i']>>"]=$func('#dev#',$args['dev'],$args["number_<<args['i']>>"])
+	end
+	args['i']+=1
 	jump 'к_целому'
 end
-$args[9]='0'
-i_easy_math_plus=0
+!@ следующий цикл - суммирование чисел
+args['i']=0
+$args['sum']=$func('#zero#',args['int_size'],args['float_size'])
 :for
-if i_easy_math_plus<9:
-	args['max_len']=max(len($args[i_easy_math_plus]),len($args[i_easy_math_plus+1]))
-	o_easy_math_plus=1
-	:logic
-	if o_easy_math_plus>-1:
-		if minus_easy_math_plus[i_easy_math_plus+o_easy_math_plus]=1:
-			$args['<<o_easy_math_plus>>']=$func('#dev#',$func('#zero#',args['max_len']+2,'9'),$args[i_easy_math_plus+o_easy_math_plus])
-		else
-			$args['<<o_easy_math_plus>>']=$func('#zero#',args['max_len']-len($args[i_easy_math_plus+o_easy_math_plus])+2)+$args[i_easy_math_plus+o_easy_math_plus]
-		end
-		o_easy_math_plus-=1
-		jump 'logic'
-	end
-	$args['sum']=$func('#add#',$args['1'],$args['0'])
-	if val($mid($args['sum'],1,1))>0:
-		$args['sum']=$func('#dev#',$func('#zero#',args['max_len']+2,'9'),$args['sum'])
-		minus_easy_math_plus[i_easy_math_plus+1]=1
-	else
-		minus_easy_math_plus[i_easy_math_plus+1]=0
-	end
-	$args[i_easy_math_plus]=''
-	$args[i_easy_math_plus+1]=$args['sum']
-	i_easy_math_plus+=1
+if args['i']<=args['b']:
+	$args['sum']=$func('#add#',$args['sum'],$args["number_<<args['i']>>"])
+	args['i']+=1
 	jump 'for'
-else
-	$result=$mid($args[9],1,len($args[9])-len_easy_math_plus['pos'])+'.'+$mid($args[9],len($args[9])-len_easy_math_plus['pos']+1)
-	$result=$func('#dz#',$result)
-	if minus_easy_math_plus[9]=1 and $result!'0': $result='-'+$result
 end
-killvar 'minus_easy_math_plus'
-killvar 'i_easy_math_plus'
-killvar 'o_easy_math_plus'
-killvar 'len_easy_math_plus'
+if instr($args['sum'],'9')=1:
+	$args['result']=$func('#dev#',$args['dev'],$args['sum'])
+	$args['+']='-'
+else
+	$args['result']=$args['sum']
+	$args['+']=''
+end
+$args['result']=$args['+']+$mid($args['result'],1,args['int_size'])+"."+$mid($args['result'],args['int_size']+1)
+$result=$func('#dz#',$args['result'])
 --- #+# ---------------------------------
 !@pp:endif
+
+Функция использует функции add, dev, zero, dz
+
