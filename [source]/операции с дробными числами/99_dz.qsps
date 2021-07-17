@@ -44,7 +44,13 @@ end
 $args['start']=$strfind($args['start'],'(0*)(\d*)$',2)
 if $args['start']='': $args['start']='0'	& !@ если в целой части были только нули, оставляем один ноль
 ! @ если дробная часть не отсеклась, возвращаем число с точкой, иначе - без
-if $args['end']<>'': $result=$args['+']+$args['start']+'.'+$args['end'] else $result=$args['+']+$args['start']
+if $args['end']<>'':
+	$result=$args['+']+$args['start']+'.'+$args['end']
+elseif $args['start']<>0:
+	$result=$args['+']+$args['start']
+else
+	$result='0'
+end
 --- #dz# ---------------------------------
 !@pp:endif
 
