@@ -67,3 +67,10 @@ $args['float_r']=$mid($args['num_0'],args['dot']+1)
 $result=$func('#dz#',$args['+']+$args['int_r']+'.'+$args['float_r'])
 --- #rounddiv# ---------------------------------
 !@pp:endif
+
+Функция использует функции #zero# и #dz#.
+
+!@pp:if(em_rounddiv!=True):nopp
+!@pp:var(em_dz)
+!@pp:var(em_zstr)
+!@pp:endif
