@@ -1,7 +1,7 @@
 QSP-Game Логарифмирование по основанию 10
 args[0] - число
 result - максимально близкая к этому числу и по основанию 10 степень
-!@pp:if(em_log):include
+!@pp:if(em_lg):include
 # em.lg
 args[9]=args[9]
 args['base']=1
