@@ -28,4 +28,8 @@ $result=$args['result']
 - em.minVar
 !@pp:endif
 
-Функция не использует иных функций библиотеки
+Функция использует функцию em.maxVar
+
+!@pp:if(em_minvar!=True):nopp
+!@pp:var(em_maxvar)
+!@pp:endif
