@@ -23,15 +23,11 @@ body > .em_AROUND{
  padding-inline-start:1em;
  list-style-type:none;
 }
-.off_menuV a.off_menuVli {
- padding-left:0.8em;
-}
 .off_menuV li ol {
  display:none;
 }
 li :checked ~ ol {
  display:block;
- background:#88888812;
  border-radius:5px;
 }
 li :checked ~ span label span.off_downTriangle, span.off_rightTriangle {
@@ -42,5 +38,9 @@ li :checked ~ span label span.off_rightTriangle, span.off_downTriangle {
 }
 .off_hideCheck{
  display:none;
+}
+.off_wSubMenu:hover {
+    background: #ffffff55;
+    transition: background 1s ease;
 }
 /* ----------------- стили для офлайн ----------------- */
