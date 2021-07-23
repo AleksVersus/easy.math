@@ -7,7 +7,7 @@ if $args[0]="":
 	$fname="Consolas"
 	usehtml=0
 	$usercom='!--test--!'	
-	"easy.math v 2.3.0 для QSP 5.7.0"
+	"easy.math v 2.4.0 для QSP 5.7.0"
 	"
 	По всем вопросам и предложениям обращаться:
 
@@ -27,7 +27,7 @@ if $args[0]="":
 
 	"
 elseif $args[0]='version':
-	result=2314
+	result=2400
 end
 --- !easy.math! ---------------------------------
 Если значение метки build_easy_math равно Off, выключаем обработку следующих строк
