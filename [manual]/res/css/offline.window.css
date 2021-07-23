@@ -17,4 +17,30 @@ body > .em_AROUND{
 .stickUP img {
     max-height:50px;
 }
+
+/* сворачиваемые меню */
+.off_menuV {
+ padding-inline-start:1em;
+ list-style-type:none;
+}
+.off_menuV a.off_menuVli {
+ padding-left:0.8em;
+}
+.off_menuV li ol {
+ display:none;
+}
+li :checked ~ ol {
+ display:block;
+ background:#88888812;
+ border-radius:5px;
+}
+li :checked ~ span label span.off_downTriangle, span.off_rightTriangle {
+ display:inline;
+}
+li :checked ~ span label span.off_rightTriangle, span.off_downTriangle {
+ display:none;
+}
+.off_hideCheck{
+ display:none;
+}
 /* ----------------- стили для офлайн ----------------- */
