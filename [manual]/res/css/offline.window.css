@@ -43,4 +43,13 @@ li :checked ~ span label span.off_rightTriangle, span.off_downTriangle {
     background: #ffffff55;
     transition: background 1s ease;
 }
+
+/* подпись к заголовку */
+._underhead {
+    color:#2a280d;
+    text-align: center;
+    font-size:0.8em;
+    margin-top:-1.2em;
+    text-indent:initial;
+}
 /* ----------------- стили для офлайн ----------------- */
