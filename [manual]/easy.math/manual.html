@@ -69,6 +69,28 @@
                 <p>Аргументы могут быть текстовыми или числовыми в зависимости от требований и назначения функции.</p>
                 <p>Библиотека работает с переменными, имена которых включают сочетание <span class="emARR">easy_math</span>, чтобы избежать пересечений с именами переменных, которые Вы используете в своих играх.</p>
                 <p>Все переменные, использующиеся функциями, после - уничтожаются.</p><p>Если результат работы функции помещается в массив, одним из параметров функции указывается имя массива, в который должен быть помещён результат. Имена массивов, передаваемые в аргументах функций, должны записываться по общим правилам записи имён переменных для плеера: текстовые массивы - с символом <span class="emTEXT">$</span> перед именем, числовые - без символа <span class="emTEXT">$</span> перед именем. Само имя не должно содержать символа <span class="emTEXT">$</span>, и других запрещённых символов.</p>
+                <p>В руководстве приводятся примеры с результатами работы функции. Такие примеры не являются валидным кодом QSP, и служат лишь для демонстрации вызова функций и результата, который они вернут. Чтобы превратить данные примеры в валидный код QSP, необходимо закомментировать часть с представленным результатом.</p>
+                <div style="width:100%;display:flex;">
+                    
+                            <div  class="Monokai-Code" style="margin-right:0.2em;max-width:50%;">
+                                <span class="Monokai-Comment">! не валидный код QSP</span>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'0000000000000'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'1111111111111'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'10101010101010101010101010'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'aaaaaaaaaaaaa'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>)<span class="Monokai-Assign">=</span><span class="Monokai-String">'blablabla'</span>
+                            </div>
+                       
+                            <div  class="Monokai-Code" style="margin-left:0.2em;max-width:50%;">
+                                <span class="Monokai-Comment">! валидный код QSP</span>
+<span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>)&nbsp;<span class="Monokai-Operator">&</span>&nbsp;<span class="Monokai-Comment">!&nbsp;='0000000000000'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'1'</span>)&nbsp;<span class="Monokai-Operator">&</span>&nbsp;<span class="Monokai-Comment">!&nbsp;='1111111111111'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'10'</span>)&nbsp;<span class="Monokai-Operator">&</span>&nbsp;<span class="Monokai-Comment">!&nbsp;='10101010101010101010101010'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">13</span>,<span class="Monokai-String">'a'</span>)&nbsp;<span class="Monokai-Operator">&</span>&nbsp;<span class="Monokai-Comment">!&nbsp;='aaaaaaaaaaaaa'</span><br>
+                                <span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#zero#'</span>,<span class="Monokai-Numeric">3</span>,<span class="Monokai-String">'bla'</span>)&nbsp;<span class="Monokai-Operator">&</span>&nbsp;<span class="Monokai-Comment">!&nbsp;='blablabla'</span>
+                            </div>
+                     
+                </div>
                 
                 <h2>История версий</h2>
                 <!-- История версий -->
