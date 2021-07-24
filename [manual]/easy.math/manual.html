@@ -4,6 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link type="text/css" rel="stylesheet" href="../res/css/easy.library.css" />
     <link type="text/css" rel="stylesheet" href="../res/css/offline.window.css" />
+    <link type="text/css" rel="stylesheet" href="../res/css/qsp_code.css" />
     <title>Easy Math — Manuals</title>
 </head>
 <body>
@@ -11,27 +12,26 @@
             <a id="UP" class="emHREFHH" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" title="скачать последнюю версию библиотеки в формате rar">
                 <h1>easy.math.qsp v. 2.4.0</h1>
             </a>
-            <div class="em_Warning">
-                Внимание!!! В данной версии руководства присутствуют неточности в определениях чисел. Временами рациональные, вещественные и натуральные числа перепутаны и называются неправильно. Если вы математик, вы должны испытывать справедливый гнев. Сам знаю, это кощунство. Постараюсь исправить. Если нашли ошибку в определениях, сообщите адрес страницы, заголовок, под которым расположено неверное определение числа и, желательно, фрагмент текста. Заранее благодарен и прошу прощения.
-            </div>
-            <div class="em_Epigraph">
+            <p class="_underhead">Библиотека математических функций</p>
+           
+            <div class="em_PAGE">
+                <p>
+                    Разрабатывалась для плееров версий 5.7.0 — это: классический плеер <a href="http://qsp.su/attachments/qsp570.zip">версии 5.7.0</a>, <a href="https://github.com/seedhartha/QuestPlayer">плеер от Seedhartha</a> для Android (до версии 2.3.1 минимум), а так же <a href="http://qsp.su/index.php?option=com_agora&task=topic&id=633&Itemid=57">Quest Navigator</a> версии 0.0.28. Не гарантируется правильная работа на плеерах иных версий. Некоторые функции имеют ограничения на значение числовых аргументов, это связано с используемыми плеером библиотеками. Для разных версий плеера могут быть разные ограничения, поэтому внимательно читайте документацию к плееру, под который разрабатываете игру.
+                </p>
+                <p>
+                    Ветка версий 2.x.x. будет поддерживаться до тех пор, пока не выйдет классический плеер версии 5.8.0, и пока я не допишу игру для плеера версии 5.7.0, затем я сосредоточусь на ветке 3.x.x. Таким образом будут существовать одновременно две версии библиотеки: 2.x.x и 3.x.x. Вариант 2.x.x будет работать и в более старых, и в более новых версиях плеера, а вариант 3.x.x будет работать исключительно в плеерах версии 5.8.0 и выше.
+                </p>
+                <div class="em_Warning">
+                    Внимание!!! В версии библиотеки 2.4.0, которая следует за 2.3.14, внесены большие изменения (см. <a href="istoria_versij/0-46.html" style="color:#dd0000;">историю версий</a>), и многие функции потеряли обратную совместимость. Управляющие конструкции для многих функций переписаны и приведены к единому виду! Будьте внимательны при обновлении библиотеки, если вы её уже используете!!!
+                </div>
                 <div>
-                    <p>Библиотека разрабатывалась для плееров версий QSP 5.7.0 - это классический плеер версии 5.7.0, плеер от Seedhartha для Android до версии 2.3.1, а так же Quest Navigator версии 0.0.28. Не гарантируется правильная работа на плеерах иных версий. Некоторые функции имеют ограничения на значение числовых аргументов, это связано с используемыми плеером библиотеками. Для разных версий плеера могут быть разные ограничения, поэтому внимательно читайте документацию к плееру, под который разрабатываете игру.</p>
-                    <p>По всем вопросам и предложениям обращаться:</p>
-                    <ul class="em_TT">
-                        <li>e-mails:                  
-                            <ul class="em_TT">
-                                <li>aleksversus@mail.ru</li>
-                                <li>aleksversus@yandex.ru</li>
-                            </ul>
-                        </li>
+                    По всем вопросам и предложениям обращаться:
+                    <ul>
+                        <li>aleksversus@mail.ru</li>
                         <li>Вконтакте: <a href="https://vk.com/id40090736" class="emHREFHH" target="_blank">id40090736</a></li>
                     </ul>
-                    <p style="margin-left:-1.5em;">Изначально создавалась для обеспечения нужд игры МАГИКОН.</p>
+                    Изначально библиотека создавалась для обеспечения нужд игры <a href="http://aleksversus.narod.ru/index/magicon_fb/0-65" target="_blank" class="emHREFHH" >МАГИКОН</a>.
                 </div>
-            </div>
-            <div class="em_PAGE">
-                <p>Сопроводительный текст и инструкции для использования библиотеки.</p>
                 
                 <h2>Подключение и использование</h2>
                 
@@ -45,9 +45,14 @@
                         </li>
                         <li>
                             <p>В своей игре на самой первой локации, в поле "выполнить при посещении" введите
-                            <p class="em_CODE"><span class="emOPRT">addqst</span> <span class="emTEXT">'lib\easy.math.qsp'</span></p>
-                            <p>Если планируется использование библиотеки в играх на Quest Navigator необходимо так же прописать такую строку:</p>
-                            <p class="em_CODE">$AVS_PLAYERTYPE<span class="emOPRT">=</span><span class="emTEXT">'QN'</span></p>
+                            <p class="Monokai-Code">
+                                <span class="Monokai-Operator">addqst</span>&nbsp;<span class="Monokai-String">'lib\easy.math.qsp'</span>
+                            </p>
+                            <p>Если планируется использование библиотеки в играх на Quest Navigator, подключение библиотеки производится с помощью команды <span class="emOPRT">inclib</span>. Так же необходимо выставить значение переменной <span class="emARR">$AVS_PLAYERTYPE</span> равное <span class="emTEXT">'[QN]'</span>:</p>
+                            <p class="Monokai-Code">
+                                <span class="Monokai-Operator">inclib</span>&nbsp;<span class="Monokai-String">'lib\easy.math.qsp'</span>
+                                <br>$AVS_PLAYERTYPE=<span class="Monokai-String">'[QN]'</span>
+                            </p>
                         </li>
                         <li>
                             <p>теперь Вы можете пользоваться функциями библиотеки.</p>
@@ -58,11 +63,11 @@
                     <span class="emFUNC">$FUNC</span>( ) - для получения текстовых значений.
                 </p>
                 <p>Исключением являются функции, результат которых записывается в массив. Такие функции вызываются оператором <span class="emOPRT">GOSUB</span>, или <span class="emOPRT">GS</span>.</p>
-                <p class="em_CODE">
-                    <span class="emFUNC">$FUNC</span>(<span class="emTEXT">'#fnct#'</span>,<span class="emVAR">$args[</span>0<span class="emVAR">]</span>,<span class="emVAR">$args[</span>1<span class="emVAR">]</span>,<span class="emVAR">$args[</span>2<span class="emVAR">]</span>,<span class="emVAR">$args[</span>3<span class="emVAR">]</span>,<span class="emVAR">$args[</span>4<span class="emVAR">]</span>,<span class="emVAR">$args[</span>5<span class="emVAR">]</span>,<span class="emVAR">$args[</span>6<span class="emVAR">]</span>,<span class="emVAR">$args[</span>7<span class="emVAR">]</span>,<span class="emVAR">$args[</span>8<span class="emVAR">]</span>)
-                </p>
+                <div class="Monokai-Code">
+                    <span class="Monokai-Func">$FUNC</span>(<span class="Monokai-String">'#fnct#'</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">0</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">1</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">2</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">3</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">4</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">5</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">6</span>]</span>,<span class="Monokai-SysVar">$args[<span class="Monokai-Numeric">7</span>]</span>,<span class="Monokai-SysVar">$args[8]</span>)
+                </div>
                 <p>Аргументы могут быть текстовыми или числовыми в зависимости от требований и назначения функции.</p>
-                <p>Библиотека работает с переменными, имена которых включают сочетание easy_math, чтобы избежать пересечений с именами переменных, которые Вы используете в своих играх.</p>
+                <p>Библиотека работает с переменными, имена которых включают сочетание <span class="emARR">easy_math</span>, чтобы избежать пересечений с именами переменных, которые Вы используете в своих играх.</p>
                 <p>Все переменные, использующиеся функциями, после - уничтожаются.</p><p>Если результат работы функции помещается в массив, одним из параметров функции указывается имя массива, в который должен быть помещён результат. Имена массивов, передаваемые в аргументах функций, должны записываться по общим правилам записи имён переменных для плеера: текстовые массивы - с символом <span class="emTEXT">$</span> перед именем, числовые - без символа <span class="emTEXT">$</span> перед именем. Само имя не должно содержать символа <span class="emTEXT">$</span>, и других запрещённых символов.</p>
                 
                 <h2>История версий</h2>
