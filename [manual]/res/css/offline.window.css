@@ -18,31 +18,7 @@ body > .em_AROUND{
     max-height:50px;
 }
 
-/* сворачиваемые меню */
-.off_menuV {
- padding-inline-start:1em;
- list-style-type:none;
-}
-.off_menuV li ol {
- display:none;
-}
-li :checked ~ ol {
- display:block;
- border-radius:5px;
-}
-li :checked ~ span label span.off_downTriangle, span.off_rightTriangle {
- display:inline;
-}
-li :checked ~ span label span.off_rightTriangle, span.off_downTriangle {
- display:none;
-}
-.off_hideCheck{
- display:none;
-}
-.off_wSubMenu:hover {
-    background: #ffffff55;
-    transition: background 1s ease;
-}
+
 
 /* подпись к заголовку */
 ._underhead {
