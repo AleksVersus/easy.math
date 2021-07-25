@@ -18,11 +18,16 @@
                 
                 
                 <p>Определяет координаты ячейки по текущему номеру ячейки. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
-                <p class="em_CODE">
+                <div class="em_CODE">
                     <span class="emVAR">&nbsp;args[<span class="emNUM">0</span>]</span> - текущий номер ячейки или блока <span class="emTT">N</span>;
                     <br><span class="emVAR">&nbsp;args[<span class="emNUM">1</span>]</span> - ширина поля <span class="emTT">W</span>;
-                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - управление: <span class="emTEXT">"[x]"</span> - координата по оси X; <span class="emTEXT">"[y]"</span> - координата по оси Y; пустое значение - обе координаты возвращаются в формате <span class="emTEXT">x:00 y:99</span>.
-                </p>
+                    <br><span class="emVAR">$args[<span class="emNUM">2</span>]</span> - управление:
+                    <ul>
+                        <li><span class="emTEXT">[x]</span> - координата по оси X;</li>
+                        <li><span class="emTEXT">[y]</span> - координата по оси Y;</li>
+                        <li>пустое значение, <span class="emTEXT">[xy]</span> или <span class="emTEXT">[x][y]</span> - обе координаты возвращаются в формате <span class="emTEXT">[x:00] [y:99]</span>.</li>
+                    </ul>
+                </div>
                 <h5>Пример таблицы:</h5>
                 <div class="Monokai-Code">
                     y/x&nbsp;&nbsp;|&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
@@ -39,7 +44,8 @@
                 <div class="Monokai-Code">
                     <span class="Monokai-Func">func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>,<span class="Monokai-String">'[x]'</span>)=<span class="Monokai-Numeric">2</span>
                     <br><span class="Monokai-Func">func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>,<span class="Monokai-String">'[y]'</span>)=<span class="Monokai-Numeric">2</span>
-                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>)=<span class="Monokai-String">"x2: y:2"</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">3+1</span>)=<span class="Monokai-String">"[x:2] [y:2]"</span>
+                    <br><span class="Monokai-Func">$func</span>(<span class="Monokai-String">'#coords.get#'</span>,<span class="Monokai-Numeric">10</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">'[x][y]'</span>)=<span class="Monokai-String">"[x:2] [y:2]"</span>
                 </div>
                 <p>&nbsp;</p>
                 <div><a href="../manual.html">Назад</a></div>
