@@ -10,12 +10,12 @@ $args['\n']='
 gosub '#str.inArray#',$args[0],'$easy_math_temp_massive','','[trim]'	& !@ разбиваем текст на строки и строки помещаем в массив
 !@ если первый и последний элемент содержат только пробелы или пусты, удаляем их
 :for1
-if arrsize('$easy_math_temp_massive')>0 and ($easy_math_temp_massive[0]='' or strcomp($easy_math_temp_massive[0],'\s+')=-1):
+if arrsize('$easy_math_temp_massive')>0 and ($easy_math_temp_massive[0]='' or strcomp($easy_math_temp_massive[0],'\s+')<>0):
 	killvar '$easy_math_temp_massive',0
 	jump 'for1'
 end
 :for2
-if arrsize('$easy_math_temp_massive')>0 and ($easy_math_temp_massive[]='' or strcomp($easy_math_temp_massive[],'\s+')=-1):
+if arrsize('$easy_math_temp_massive')>0 and ($easy_math_temp_massive[]='' or strcomp($easy_math_temp_massive[],'\s+')<>0):
 	killvar '$easy_math_temp_massive',arrsize('$easy_math_temp_massive')-1
 	jump 'for2'
 end
