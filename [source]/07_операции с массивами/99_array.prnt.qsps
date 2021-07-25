@@ -11,13 +11,21 @@ if args[3]<0: args[3]=0	& !@ защита от дурака
 if args[4]<args[3]: args[4]=0	& !@ защита от дурака
 !@ если указано, что нужно обрезать пробелы у значений, в dyneval будет добавляться команда trim
 if instr($args[1],'[trim]')<>0: $args['trim.open']='TRIM(' & $args['trim.close']=')'
+!@ если не выводим только результаты, содержимое оборачивается в кавычки
+if instr($args[1],'[only result]')=0:
+	$args['quotes']="'"
+	$args['only_result']=''
+else:
+	$args['quotes']=""
+	$args['only_result']='yep'
+end
 :for
 if args[3]<arrsize($args[0]):
 	!@ args[3] - счётчик. Пока счётчик не достигнет размера массива.
 	!@ если не указано, что нужно вывести только значения массивов, к выводимым значениям добавляется название массива и номер ячейки
-	if instr($args[1],'[only result]')=0: $args['array.prnt']+=$args[0]+"[<<args[3]>>]="
+	if $args['only_result']='': $args['array.prnt']+=$args[0]+"[<<args[3]>>]="
 	!@ получаем значение с помощью $dyneval и добавляем к результату
-	$args['array.prnt']+=$dyneval("$result = <<$args['trim.open']>><<$args[0]>>[args[0]]<<$args['trim.close']>>",args[3])+$args[2]
+	$args['array.prnt']+=$args['quotes']+$dyneval("$result = $replace(<<$args['trim.open']>><<$args[0]>>[args[0]]<<$args['trim.close']>>,$args[1],""''"")",args[3],$args['quotes'])+$args['quotes']+$args[2]
 	args[3]+=1	& !@ увеличиваем значение счётчика
 	if args[3]<=args[4] or args[4]=0: jump 'for'	& !@ пока счётчик не превысит args[4] либо args[4]=0, потворяем
 end
