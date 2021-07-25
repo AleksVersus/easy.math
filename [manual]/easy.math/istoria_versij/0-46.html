@@ -181,6 +181,13 @@
                             <li>Для функций <span class="emFOLD">#array.prnt.few#</span> и <span class="emFOLD">#array.prnt#</span> исправлен вывод в виде кода, теперь содержимое массивов можно выводить в виде валидного кода QSP, тогда как раньше это был условный код, не валидный для QSP.</li>
                             <li>В функции <span class="emFOLD">#coord.get#</span> изменился формат возвращения результата. Раньше результат возвращался в формате строки <span class="emTEXT">'x:00 y:99'</span>, а теперь — <span class="emTEXT">'[x:00] [y:99]'</span>.</li>
                             <li>В функции <span class="emFOLD">#array.simp#</span> изменены управляющие конструкции: вместо <span class="emTEXT">simp</span>, <span class="emTEXT">conc</span>, <span class="emTEXT">/se</span> соответственно <span class="emTEXT">[simp]</span>, <span class="emTEXT">[conc]</span>, <span class="emTEXT">[se]</span> (или <span class="emTEXT">[space exclude]</span>).</li>
+                            <li>В функции <span class="emFOLD">#array.srch#</span> изменены управляющие конструкции. Упразднён шестой аргумент. Добавлена возможность выводить позицию и значение элемента одновременно.</li>
+                            <li>Изменена функция <span class="emFOLD">em.arr.chType</span> - теперь она работает без посторонних функций.</li>
+                            <li>Изменены управляющие конструкции функции <span class="emFOLD">#rndstr#</span>. Стандартизированы, приведены к более читаемому виду. Упрощены алгоритмы функции. Более подробно см. документацию в исходнике.</li>
+                            <li>Изменены управляющие конструкции функции <span class="emFOLD">#chk.array.word#</span>.</li>
+                            <li>Управляющие конструкции <span class="emFOLD">#str.inArray#</span> изменены на <span class="emTEXT">[regular]</span>, <span class="emTEXT">[left]</span>, <span class="emTEXT">[right]</span> и т.д.</li>
+                            <li>В функции <span class="emFOLD">#array.sort#</span> изменены управляющие слова (<span class="emTEXT">[up]</span> и <span class="emTEXT">[down]</span>). Слегка изменена логика определения аргументов на входе.</li>
+                            <li>Для функции <span class="emFOLD">#widetrim#</span> изменено управляющее слово: <span class="emTEXT">[strip]</span> вместо <span class="emTEXT">[trim]</span>.</li>
                             
                         </ol>
                     </li>
