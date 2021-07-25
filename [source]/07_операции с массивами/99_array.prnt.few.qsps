@@ -90,7 +90,7 @@ else
 				else
 					!@ для не таблицы просто добавляем значение
 					if $args['only result']<>'only result':
-						$args['cell']+="'"+$dyneval("$result = <<$args[args['i']]>>[args[0]]",args['b'])+"'"
+						$args['cell']+="'"+$dyneval("$result = $replace(<<$args[args['i']]>>[args[0]],""'"",""''"")",args['b'])+"'"
 					else
 						$args['cell']+=$dyneval("$result = <<$args[args['i']]>>[args[0]]",args['b'])
 					end
@@ -101,8 +101,12 @@ else
 			end
 			if $args['table']<>'':
 				$args['table']+='<td>'+$args['cell']+'</td>'	& !@ для таблицы создаём ячейку
-			else
-				$args['result']+=$args['cell']+'	'	& !@ для не таблицы добавляем отступ
+			elseif $args['only result']='only result' and args['i']<>0:
+				$args['result']+='	'+$args['cell']	& !@ для не таблицы добавляем отступ
+			elseif args['i']<>0:
+				$args['result']+='	&	'+$args['cell']	& !@ для не таблицы добавляем отступ
+			else:
+				$args['result']+=$args['cell']
 			end
 			args['i']+=1
 			jump 'zap'
