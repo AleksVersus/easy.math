@@ -27,7 +27,7 @@ $result=$args['res.indiv']	& !@ возвращаем результат
 --- #indiv# ---------------------------------
 !@pp:endif
 
-Функция использует функцию delete_zero, она же em_dz, она же #dz#. В новой версии em.float.dz
+Функция использует функцию delete_zero, она же em.dz, она же #dz#. В новой версии em.float.dz
 
 !@pp:if(em_indiv!=True):nopp
 !@pp:var(em_dz)

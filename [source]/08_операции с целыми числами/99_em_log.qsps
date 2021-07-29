@@ -5,6 +5,7 @@ result - максимально близкая к этому числу и по 
 !@pp:if(em_log):include
 # em.log
 args[9]=args[9]
+if args[1]=0: args[1]=10
 args['base']=1
 result=0
 :for
