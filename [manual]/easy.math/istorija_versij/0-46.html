@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <!-- TODO: favicon -->
+  <link href="../../res/css/easy.library.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="avs-page-wrapper">
+   <div class="easy-lib-page">
+    <article class="e-block">
+     <div class="avs-pages-button__left-combine">
+      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
+       <div class="avs-pages-button">
+        Назад
+       </div>
+      </a>
+     </div>
+     <a class="avs-article-h1__link" href="https://github.com/AleksVersus/easy.math/releases/download/v.2.4.0/easy.math.2.4.0.rar" id="UP" title="скачать последнюю версию библиотеки в формате rar">
+      <h1 class="avs-article-h1">
+       easy.math.qsp v. 2.4.0
+      </h1>
+     </a>
+     <!-- Исправить ссылку -->
+     <h2 class="avs-article-h2">
+      История версий
+     </h2>
+     <!-- -->
+     <ul>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.1:
+       </h3>
+       <ol>
+        <li>
+         сконструирован простейший отладчик
+        </li>
+        <li>
+         изменен принцип работы функции
+         <code class="em-folder">
+          #+#
+         </code>
+         - теперь она может работать со сколько угодно большими числами.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.2:
+       </h3>
+       <ol>
+        <li>
+         добавлена функция
+         <code class="em-folder">
+          #zero#
+         </code>
+        </li>
+        <li>
+         исправлена ошибка, приводившая к неправильному счёту при использовании нескольких функций подряд.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.3:
+       </h3>
+       <ol>
+        <li>
+         добавлена функция
+         <code class="em-folder">
+          #add#
+         </code>
+        </li>
+        <li>
+         добавлена функция
+         <code class="em-folder">
+          #dev#
+         </code>
+        </li>
+        <li>
+         переработана функция
+         <code class="em-folder">
+          #+#
+         </code>
+         - теперь она работает проще и быстрее, используя функции логического сложения и вычитания, что позволило суммировать числа любой длины и знака.
+        </li>
+        <li>
+         переработана и упрощена функция
+         <code class="em-folder">
+          #*#
+         </code>
+         - может перемножать числа любой длины и знака.
+        </li>
+        <li>
+         исправлена ошибка в функции
+         <code class="em-folder">
+          #sum#
+         </code>
+         , приводившая к неверному подсчёту вплоть до зависания программы.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.4:
+       </h3>
+       <ol>
+        <li>
+         исправлена функция
+         <code class="em-folder">
+          #dev#
+         </code>
+         - теперь она вычитает с учётом переполнения.
+        </li>
+        <li>
+         исправлена функция
+         <code class="em-folder">
+          #rndstr#
+         </code>
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.5:
+       </h3>
+       <ol>
+        <li>
+         введены функции работы с массивами:
+         <br/>
+         <code class="em-folder">
+          #array.rand#
+         </code>
+         - заполняет массив случайными числовыми значениями
+         <br/>
+         <code class="em-folder">
+          #array.prnt#
+         </code>
+         - выводит в результат содержимое массива
+         <br/>
+         <code class="em-folder">
+          #array.sort#
+         </code>
+         - сортировка значений массива
+         <br/>
+         <code class="em-folder">
+          #array.rstd#
+         </code>
+         - перестановка значений массива
+         <br/>
+         <code class="em-folder">
+          #array.dsrt#
+         </code>
+         - восстановление массива к виду до сортировки
+        </li>
+        <li>
+         Модернизирована функция
+         <code class="em-folder">
+          #array.sort#
+         </code>
+         . Теперь она сортирует также и по строковым значениям.
+        </li>
+        <li>
+         Исправлены функции работы с щестнадцатеричными числами: удалены лишние переменные.
+        </li>
+        <li>
+         Добавлена функция сравнения содержимого двух массивов
+         <code class="em-folder">
+          #array.simp#
+         </code>
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.6:
+       </h3>
+       <ol>
+        <li>
+         Изменена функция, вычисляющая модуль разности двух чисел
+         <code class="em-folder">
+          #-#
+         </code>
+        </li>
+        <li>
+         Расширена функция
+         <code class="em-folder">
+          #array.prnt#
+         </code>
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #str.inArray#
+         </code>
+         , которая выбирает из блока текста строки и помещает их в массив.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.7:
+       </h3>
+       <ol>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #array.prnt.few#
+         </code>
+         , которая позволяет выводить на экран содержимое сразу нескольких массивов
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #WIDETRIM#
+         </code>
+         - отрезающая прилегающие символы пробелов и табуляций и переводов строк.
+        </li>
+        <li>
+         Изменена функция
+         <code class="em-folder">
+          #array.prnt#
+         </code>
+         - расширена возможностью убирать из результатов прилегающие пробельные символы.
+        </li>
+        <li>
+         Расширена функция
+         <code class="em-folder">
+          #WIDETRIM#
+         </code>
+         - расширена возможностью убирать из строк преформатирование.
+        </li>
+        <li>
+         Изменена функция
+         <code class="em-folder">
+          #WIDETRIM#
+         </code>
+         - теперь удаляются все строки, которые не содержат ничего, кроме пробельных символов, в начале и конце текста.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.8:
+       </h3>
+       <ol>
+        <li>
+         В модуль добавлены вспомогательные функции:
+         <br/>
+         <code class="em-folder">
+          get.tag.cont
+         </code>
+         - получает значение сдвоенных тегов.
+         <br/>
+         <code class="em-folder">
+          get.tag.num
+         </code>
+         - получает значение одиночных тегов.
+         <br/>
+         <code class="em-folder">
+          get.word.inPos
+         </code>
+         - из строки вида
+         <code class="em-string">
+          "слово1|слово2|...|слово3"
+         </code>
+         получает слово в указанной позиции между вертикальными чертами
+         <br/>
+         <code class="em-folder">
+          kill.var.olegus
+         </code>
+         - удаляет элемент массива по текстовому индексу.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.9:
+       </h3>
+       <ol>
+        <li>
+         Имя функции
+         <code class="em-folder">
+          #WIDETRIM#
+         </code>
+         заменено на
+         <code class="em-folder">
+          #widetrim#
+         </code>
+         .
+        </li>
+        <li>
+         Исправлена ошибка в функции
+         <code class="em-folder">
+          get.tag.num
+         </code>
+         , приводившая к неправильному получению гексаметричного числа.
+        </li>
+        <li>
+         Исправлена ошибка в функции
+         <code class="em-folder">
+          #widetrim#
+         </code>
+         , приводившая к зависанию плеера, когда ей передавали пустое значение
+        </li>
+        <li>
+         Cлегка подправлена функция
+         <code class="em-folder">
+          #chk.array.word#
+         </code>
+         - теперь можно указать границы поиска: начальный и конечный элемент.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.10:
+       </h3>
+       <ol>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #array.clr#
+         </code>
+         , удаляющая из массива все элементы, содержащие указанное значение. Работает только со строковыми значениями.
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #array.strt#
+         </code>
+         , генерирующая массив, заполненный подряд идущими числами. Можно указать верхний и нижний пределы числа, а так же с какого элемента начинать заполнение.
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #array.srch#
+         </code>
+         , которая находит в числовом массиве максимальное и минимальное значения. В отличие от стандартных комманд
+         <code class="em-func">
+          MAX
+         </code>
+         и
+         <code class="em-func">
+          MIN
+         </code>
+         QSP, в этой функции можно указать пределы поиска: область элементов, область чисел. В случае, если для указанной области элементов, отсутствуют числа, входящие в заданные пределы, возвращается слово
+         <code class="em-string">
+          false
+         </code>
+         . Можно запросить у функции позицию элемента.
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #coords.get#
+         </code>
+         , получающая координаты по номеру элемента. Эта функция пригодится при организации двумерного массива, через одномерный, или при отрисовке игровых полей заданной ширины.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.1.11:
+       </h3>
+       <ol>
+        <li>
+         Добавлена функция вставки элемента в массив
+         <code class="em-folder">
+          #array.ins#
+         </code>
+         . Позволяет вставлять в массив элемент со сдвигом вправо. Поддерживаются текстовые и числовые массивы, а так же текстовые и числовые индексы.
+        </li>
+        <li>
+         Добавлено расширение функции сравнения массивов. Теперь можно сравнивать массивы на совпадение хотя бы одного элемента. Если в массивах найдено совпадение хотя бы одного элемента, возвращается
+         <code class="em-string">
+          true
+         </code>
+         .
+        </li>
+        <li>
+         Исправлена функция сравнения массивов. При поиске на совпадение хотя бы одного элемента, если массивы имели разный размер, происходил оверкил-выход, что приводило к выдаче сообщения об ошибке. Теперь при сравнении массивов на совпадение хотя бы одного элемента, будет производиться поиск независимо от размеров массива, однако подобное действие приведёт к получению ложного
+         <code class="em-string">
+          true
+         </code>
+         в случае, когда в одном из массивов будет пустая строка.
+        </li>
+        <li>
+         Исправлена функция очистки массива
+         <code class="em-folder">
+          #array.clr#
+         </code>
+         . Теперь она может очищать от пустых значений, и от числовых значений.
+        </li>
+        <li>
+         Внесены изменения в локацию
+         <code class="em-folder">
+          #array.prnt#
+         </code>
+         . Теперь можно выводить не весь массив, а лишь его часть. Т.е указать от какого до какого элемента следует вывести массив.
+        </li>
+        <li>
+         Исправлена ошибка ложного
+         <code class="em-folder">
+          true
+         </code>
+         при сравнении массивов на совпадение хотя бы одного элемента. Теперь ложное true может возникнуть лишь в случае, если в одном из массивов пустая строка (элемент) присутствует не на последнем месте. Однако и эту ситуацию можно предвосхитить, поставив ключ
+         <code class="em-string">
+          "/se"
+         </code>
+         к управляющей конструкции.
+         <code class="em-string">
+          Space Exclude
+         </code>
+         - исключает все пустые строки массивов из сравнения.
+        </li>
+        <li>
+         Добавлена функция разрежения строки
+         <code class="em-folder">
+          #str.thin#
+         </code>
+         . В полученную строку через определённое количество символов вставляется другая строка (разделитель). По умолчанию через каждый символ вставляется пробел. Есть возможность добавлять разделитель в начале результата, в конце результата: управление
+         <code class="em-string">
+          [left]
+         </code>
+         и
+         <code class="em-string">
+          [right]
+         </code>
+         соответственно.
+        </li>
+        <li>
+         Расширены возможности функции
+         <code class="em-folder">
+          #sum#
+         </code>
+         . Теперь она суммирует и элементы текстовых массивов.
+        </li>
+        <li>
+         Устранена ошибка в функции
+         <code class="em-folder">
+          #array.prnt.few#
+         </code>
+         , представлявшая неправильную таблицу при наличии пустых ячеек в массиве.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.2.0:
+       </h3>
+       <ol>
+        <li>
+         Исправлена ошибка в функции
+         <code class="em-folder">
+          #rounddiv#
+         </code>
+         — не функционировали направления округления.
+        </li>
+        <li>
+         Исправлена функция
+         <code class="em-folder">
+          #invert#
+         </code>
+         — ошибка удаления всех символов из строки устранена.
+        </li>
+        <li>
+         Отредактированы и обновлены разделы справки.
+        </li>
+        <li>
+         Библиотека адаптирована под Quest Navigator. Для нормального функционирования с Quest Navigator в самом начале игры необходимо прописать следующее
+         <p class="Monokai-Code">
+          $AVS_PLAYERTYPE
+          <span class="Monokai-Operator">
+           =
+          </span>
+          <span class="Monokai-String">
+           'QN'
+          </span>
+         </p>
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.3.0:
+       </h3>
+       <ol>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #col-rgb#
+         </code>
+         , преобразующая цвет в формате RRGGBB в формат понятный настройкам qsp.
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #col-inv#
+         </code>
+         , преобразующая цвет в формате RRGGBB в противоположный.
+        </li>
+        <li>
+         Упрощена и сокращена функция
+         <code class="em-folder">
+          kill.var.olegus
+         </code>
+         на основе объяснения Олегуса. Работоспособность не изменилась.
+        </li>
+        <li>
+         Расширена функция случайной строки. Теперь можно указать набор символов, который необходимо получить в итоговой строке:
+         <pre class="Monokai-Code">
+                              <span class="Monokai-Func">$func</span><span class="Monokai-Operator">(<span class="Monokai-String">'#rndstr#'</span>,<span class="Monokai-Numeric">4</span>,<span class="Monokai-String">'только это'</span>,<span class="Monokai-String">'J01A23F45G67O89P'</span>)</span></pre>
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          #rtp#
+         </code>
+         , меняющая содержимое двух переменных местами. В качестве аргументов указываются имена двух переменных. В т.ч. можно указывать ячейки массивов с текстовой индексацией. Работает как для текстовых, так и для числовых переменныз.
+        </li>
+        <li>
+         Исправлен недочёт в функции сортировки массивов, приводивший к сравниванию элемента массива самого с собой.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.3.14:
+       </h3>
+       <ol>
+        <li>
+         Изменена функция
+         <code class="em-folder">
+          str.thin
+         </code>
+         , теперь она умеет разрежать с первого к последнему символу, или от последнего к первому.
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          re.rgb
+         </code>
+        </li>
+        <li>
+         Изменена функция
+         <code class="em-folder">
+          array.ins
+         </code>
+         , с учётом особенностей copyarr, и о чудо! функция ускорилась в 100 раз!!!
+        </li>
+        <li>
+         поправлена функция
+         <code class="em-folder">
+          get.tag.num
+         </code>
+         , теперь она выдаёт более логичный результат. Так же для всех функций добавлена инициализация
+         <code class="em-system">
+          $args[
+          <code class="em-number">
+           9
+          </code>
+          ]
+         </code>
+         , чтобы текстовые индексы не перезатирали числовые, особенно в новых версиях libqsp.
+        </li>
+        <li>
+         Исправлен алгоритм сортировки пузырьком. Уничтожен лишний цикл. Теперь сортировка осуществляется во много раз быстрее. Минимум в 240 раз, а при увеличении размера массива и более чем в 600 раз быстрее.
+        </li>
+        <li>
+         Скорректирована функция
+         <code class="em-folder">
+          rstd
+         </code>
+         - мелкие недочёты.
+        </li>
+        <li>
+         Добавлена функция получения типа переменной
+         <code class="em-folder">
+          em.var.getType
+         </code>
+         для плееров с библиотеками версии 5.7.0 и ниже.
+        </li>
+        <li>
+         Добавлена функция изменяющая тип массива
+         <code class="em-folder">
+          em.arr.chType
+         </code>
+        </li>
+        <li>
+         Исправлена функция
+         <code class="em-folder">
+          str.thin
+         </code>
+         - разделители в режиме
+         <code class="em-string">
+          [up]
+         </code>
+         вставлялись только через каждые три символа. Теперь работает в любом режиме.
+        </li>
+        <li>
+         Мелкие правки
+         <code class="em-folder">
+          em.arr.chType
+         </code>
+         и
+         <code class="em-folder">
+          em.var.getType
+         </code>
+         .
+        </li>
+        <li>
+         в функцию
+         <code class="em-folder">
+          str.inArray
+         </code>
+         добавлено управлющее слово
+         <code class="em-string">
+          [strip]
+         </code>
+         . У всех значений между разделителями отсекаются прилегающие пробелы.
+        </li>
+        <li>
+         Добавлены функции
+         <code class="em-folder">
+          em.maxVar
+         </code>
+         и
+         <code class="em-folder">
+          em.minVar
+         </code>
+         , которые возвращают название максимальной или минимальной соответственно переменной из списка.
+        </li>
+        <li>
+         Добавлены в мануал функции
+         <code class="em-folder">
+          em.maxVar
+         </code>
+         и
+         <code class="em-folder">
+          em.minVar
+         </code>
+         ,
+         <code class="em-folder">
+          em.arr.chType
+         </code>
+         и
+         <code class="em-folder">
+          em.var.getType
+         </code>
+         .
+        </li>
+        <li>
+         <code class="em-folder">
+          re.rgb
+         </code>
+         добавлена в мануал.
+        </li>
+       </ol>
+      </li>
+      <li>
+       <h3 class="avs-article-h3">
+        Версия 2.4.0:
+       </h3>
+       <ol>
+        <li>
+         В функции
+         <code class="em-folder">
+          #coord.get#
+         </code>
+         изменены управляющие конструкции. Вместо
+         <code class="em-string">
+          'x'
+         </code>
+         и
+         <code class="em-string">
+          'y'
+         </code>
+         теперь нужно передавать
+         <code class="em-string">
+          '[x]'
+         </code>
+         ,
+         <code class="em-string">
+          '[y]'
+         </code>
+         , или
+         <code class="em-string">
+          '[xy]'
+         </code>
+         .
+        </li>
+        <li>
+         В функции
+         <code class="em-folder">
+          #array.prnt#
+         </code>
+         теперь можно указать ключ
+         <code class="em-string">
+          /se
+         </code>
+         , чтобы при выводе значений массива не использовался разделитель.
+        </li>
+        <li>
+         В функции
+         <code class="em-folder">
+          #array.prnt.few#
+         </code>
+         исправлено определение неверного имени массива, теперь если имя массива задано не по правилам QSP, функция возвращает ошибку. Поправлены тексты ряда ошибок. Так же функция не выводила числовые значения, теперь выводит.
+        </li>
+        <li>
+         Для функций
+         <code class="em-folder">
+          #array.prnt.few#
+         </code>
+         и
+         <code class="em-folder">
+          #array.prnt#
+         </code>
+         исправлен вывод в виде кода, теперь содержимое массивов можно выводить в виде валидного кода QSP, тогда как раньше это был условный код, не валидный для QSP.
+        </li>
+        <li>
+         В функции
+         <code class="em-folder">
+          #coord.get#
+         </code>
+         изменился формат возвращения результата. Раньше результат возвращался в формате строки
+         <code class="em-string">
+          'x:00 y:99'
+         </code>
+         , а теперь —
+         <code class="em-string">
+          '[x:00] [y:99]'
+         </code>
+         .
+        </li>
+        <li>
+         В функции
+         <code class="em-folder">
+          #array.simp#
+         </code>
+         изменены управляющие конструкции: вместо
+         <code class="em-string">
+          simp
+         </code>
+         ,
+         <code class="em-string">
+          conc
+         </code>
+         ,
+         <code class="em-string">
+          /se
+         </code>
+         соответственно
+         <code class="em-string">
+          [simp]
+         </code>
+         ,
+         <code class="em-string">
+          [conc]
+         </code>
+         ,
+         <code class="em-string">
+          [se]
+         </code>
+         (или
+         <code class="em-string">
+          [space exclude]
+         </code>
+         ).
+        </li>
+        <li>
+         В функции
+         <code class="em-folder">
+          #array.srch#
+         </code>
+         изменены управляющие конструкции. Упразднён шестой аргумент. Добавлена возможность выводить позицию и значение элемента одновременно.
+        </li>
+        <li>
+         Изменена функция
+         <code class="em-folder">
+          em.arr.chType
+         </code>
+         - теперь она работает без посторонних функций.
+        </li>
+        <li>
+         Изменены управляющие конструкции функции
+         <code class="em-folder">
+          #rndstr#
+         </code>
+         . Стандартизированы, приведены к более читаемому виду. Упрощены алгоритмы функции. Более подробно см. документацию в исходнике.
+        </li>
+        <li>
+         Изменены управляющие конструкции функции
+         <code class="em-folder">
+          #chk.array.word#
+         </code>
+         .
+        </li>
+        <li>
+         Управляющие конструкции
+         <code class="em-folder">
+          #str.inArray#
+         </code>
+         изменены на
+         <code class="em-string">
+          [regular]
+         </code>
+         ,
+         <code class="em-string">
+          [left]
+         </code>
+         ,
+         <code class="em-string">
+          [right]
+         </code>
+         и т.д.
+        </li>
+        <li>
+         В функции
+         <code class="em-folder">
+          #array.sort#
+         </code>
+         изменены управляющие слова (
+         <code class="em-string">
+          [up]
+         </code>
+         и
+         <code class="em-string">
+          [down]
+         </code>
+         ). Слегка изменена логика определения аргументов на входе.
+        </li>
+        <li>
+         Для функции
+         <code class="em-folder">
+          #widetrim#
+         </code>
+         изменено управляющее слово:
+         <code class="em-string">
+          [strip]
+         </code>
+         вместо
+         <code class="em-string">
+          [trim]
+         </code>
+         .
+        </li>
+        <li>
+         Практически переписана и упрощена функция
+         <code class="em-folder">
+          #even#
+         </code>
+         - должна работать быстрее. Изменены управляющие инструкции
+         <code class="em-string">
+          up
+         </code>
+         и
+         <code class="em-string">
+          down
+         </code>
+         на
+         <code class="em-string">
+          [up]
+         </code>
+         и
+         <code class="em-string">
+          [down]
+         </code>
+         .
+        </li>
+        <li>
+         <code class="em-folder">
+          get.tag.num
+         </code>
+         теперь использует иной ключ для получения шестнадцатеричного значения
+         <code class="em-string">
+          /h
+         </code>
+         . Результат теперь возвращается только в текстовом виде.
+        </li>
+        <li>
+         Полностью переписана фукция
+         <code class="em-folder">
+          #simp#
+         </code>
+         сравнивающая два числа типа float (рациональных, с плавающей точкой). Теперь она использует меньше сторонних функций и может сравнивать числа большей длины.
+        </li>
+        <li>
+         Заменил ограничение функции
+         <code class="em-folder">
+          #dec-col#
+         </code>
+         на 255. Не пойму смысла, который вкладывал в эту функцию изначально, но теперь ограничения на входной аргумент лежат в пределах от -255 до 255, а значит и ограничения на выходной аргумент лежат в пределах от -ff до ff и это логично.
+        </li>
+        <li>
+         Добавлена функция
+         <code class="em-folder">
+          em.log
+         </code>
+         - логарифмирование. То есть вычисление максимально близкой целой степени основания, которая в результате может дать указанное число.
+        </li>
+        <li>
+         Заменил глобальные переменные на локальные в функции
+         <code class="em-folder">
+          #+col#
+         </code>
+         . Подготовил функции работы с шестнадцатеричными числами в исходниках для препроцессора.
+        </li>
+        <li>
+         Исправлена логика в работе функции
+         <code class="em-folder">
+          #dec-hex#
+         </code>
+         (а заодним и
+         <code class="em-folder">
+          #dec-col#
+         </code>
+         ), приводившая к неверному выводу числа, если число оканчивалось на два нуля. Этот ужас многие годы присутствовал в библиотеке, что говорит нам о том, что библиотекой вообще никто не пользуется.
+        </li>
+       </ol>
+      </li>
+     </ul>
+     <!-- История версий -->
+     <div class="avs-pages-button__left-combine">
+      <a class="avs-pages-button__link" href="../../easy.math/manual.html">
+       <div class="avs-pages-button">
+        Назад
+       </div>
+      </a>
+     </div>
+    </article>
+    <aside class="e-block">
+     <div class="avs-page-stamp">
+      <p>
+       Aleks Versus'Easy Libraries'2013-$YEAR$
+      </p>
+      <p>
+       Aleks Versus'Game Adventure Making'Really Unimaginable Stories'2013-$YEAR$
+      </p>
+     </div>
+    </aside>
+   </div>
+  </div>
+  <div class="em-stick-upper">
+   <a href="#UP" title="Вверх">
+    <img src="../../res/img/uparrow_btn_.png"/>
+   </a>
+  </div>
+ </body>
+</html>
