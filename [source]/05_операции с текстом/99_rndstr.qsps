@@ -29,7 +29,6 @@ if $strfind($args[1],'(?i)\[inc(lude)?\]')<>'':
 	if instr($args[1],'[lcase]')<>0: $args['symbols']=$lcase($args['symbols'])
 	$args[1] = ''
 elseif $strfind($args[1],'(?i)\[only this\]')<>'' or $strfind($args[1],'(?i)\[ot\]')<>'':
-	$args[1]=$lcase($args[1])
 	$args[1] = ''
 else
 	$args['symbols']='QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?1234567890'
